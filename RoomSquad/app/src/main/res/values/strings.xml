@@ -1,0 +1,40 @@
+<resources>
+    <string name="app_name">RoomSquad</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password (optional)</string>
+    <string name="action_sign_in">Sign in</string>
+    <string name="register">Register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+
+    <string name="title_activity_profile">ProfileActivity</string>
+    <string name="view_postings">View Postings</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="welcome">WELCOME\n</string>
+    <string name="login_top">LOGIN\n</string>
+    <string name="main_menu_top">MAIN MENU</string>
+    <string name="main_menu_bottom">(click to logout)</string>
+    <string name="confirm_registry">Email not found. You want to create a new user with that email and password?</string>
+    <string name="enter_firstname">Please enter firstname.</string>
+    <string name="my_profile">My Profile</string>
+    <string name="my_profile_top">MY PROFILE</string>
+    <string name="my_profile_bottom">(click to go back to main menu)</string>
+    <string name="my_postings">My Postings</string>
+    <string name="my_matches">My Matches</string>
+    <string name="my_suggestions">My Suggestions</string>
+    <string name="my_preferences">My Preferences</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="updatingReport">Updating User</string>
+    <string name="title_activity_postings">PostingsActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+</resources>

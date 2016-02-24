@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/my_profile_top_bar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/menu_bar">
+        <TextView
+            android:id="@+id/my_profile_top_bar_text"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="15dp"
+            android:layout_centerInParent="true"
+            android:keepScreenOn="true"
+            android:text="@string/my_profile_top"
+            android:textColor="@drawable/menu_bar_text"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textAlignment="center"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/my_profile_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/my_profile_top_bar"
+        android:layout_above="@+id/my_profile_bottom_bar"
+        android:background="@drawable/activity_layout">
+
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/my_profile_bottom_bar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/menu_bar">
+        <Button
+            android:id="@+id/my_profile_to_main_menu_button"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/button_pressed"
+            android:textColor="@drawable/button_text"
+            android:textAlignment="center"
+            android:text="@string/my_profile_bottom"
+            />
+    </RelativeLayout>
+
+</RelativeLayout>

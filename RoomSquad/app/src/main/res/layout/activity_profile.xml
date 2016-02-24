@@ -1,0 +1,75 @@
+
+
+
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <RelativeLayout
+        android:id="@+id/welcome_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/menu_bar">
+        <TextView
+            android:id="@+id/welcome_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:keepScreenOn="true"
+            android:text="@string/welcome"
+            android:textColor="@drawable/menu_bar_text"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/welcome_bar"
+        android:background="@drawable/activity_layout"
+        android:fitsSystemWindows="true">
+
+        <RelativeLayout
+            android:id="@+id/edit_profile_button_holder"
+            android:layout_width="match_parent"
+            android:layout_height="200dp">
+
+            <Button
+                android:id="@+id/edit_profile_button"
+                style="actionButtonStyle"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="25dp"
+                android:background="@drawable/button_pressed"
+                android:textColor="#caaa9e"
+                android:text="@string/edit_profile"
+                />
+
+            <Button
+                android:id="@+id/view_postings_button"
+                style="actionButtonStyle"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/edit_profile_button"
+                android:layout_marginBottom="25dp"
+                android:background="@drawable/button_pressed"
+                android:textColor="#caaa9e"
+                android:text="@string/view_postings"
+                />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/fullscreen_content_controls"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="bottom|center_horizontal"
+        android:background="#8e1c12"
+        android:orientation="horizontal">
+
+
+    </LinearLayout>
+</RelativeLayout>
+
