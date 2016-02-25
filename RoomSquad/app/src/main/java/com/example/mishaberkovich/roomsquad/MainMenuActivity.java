@@ -10,6 +10,8 @@ import com.firebase.client.Firebase;
 
 public class MainMenuActivity extends AppCompatActivity {
 
+    Firebase roomsquad_firebase = new Firebase("https://roomsquad.firebaseio.com/");
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,8 +69,7 @@ public class MainMenuActivity extends AppCompatActivity {
         Logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //remove eventually
-                Firebase roomsquad_firebase = new Firebase("https://roomsquad.firebaseio.com/");
+
                 System.out.println("Logout: User ID: " + roomsquad_firebase.getAuth().getUid() + ", Provider: " + roomsquad_firebase.getAuth().getProvider());
                 roomsquad_firebase.unauth();
                 Intent logout = new Intent(MainMenuActivity.this, LoginActivity.class);

@@ -37,4 +37,5 @@
     <string name="title_activity_postings">PostingsActivity</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="my_profile_facts">Age:\nGender:\nSmoking:\nPets:\nSocialness:\nNoisiness:\nDrinking:\nWatching TV:\nTime Spent at Home:\nHygiene:\nFriends Over at Place:\nTimeliness to Pay Bills:\nTime Significant Other will spend over:\nEarly Riser vs Late Riser:\nCooking Skills:\nOne or two bathrooms:\nMusic:\n</string>
 </resources>

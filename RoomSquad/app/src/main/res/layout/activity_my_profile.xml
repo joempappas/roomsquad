@@ -8,6 +8,7 @@
         android:id="@+id/my_profile_top_bar"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:paddingBottom="0dp"
         android:background="@drawable/menu_bar">
         <TextView
             android:id="@+id/my_profile_top_bar_text"
@@ -28,21 +29,142 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/my_profile_top_bar"
         android:layout_above="@+id/my_profile_bottom_bar"
+
+        android:paddingBottom="0dp"
+        android:layout_marginBottom="0dp"
         android:background="@drawable/activity_layout">
+
+        <RelativeLayout
+            android:id="@+id/user_profile_content_top"
+            android:layout_width="match_parent"
+            android:layout_height="165dp">
+
+            <RelativeLayout
+                android:id="@+id/user_profile_content_top_left"
+                android:layout_width="175dp"
+                android:layout_height="match_parent">
+                <RelativeLayout
+                    android:id="@+id/user_profile_basic"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/user_profile_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="1dp"
+                        android:text="MY NAME"
+                        android:textColor="@drawable/regular_text"
+                        android:textSize="20sp"
+                        android:textStyle="bold"/>
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/user_profile_details"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/user_profile_basic">
+                    <TextView
+                        android:id="@+id/user_profile_tagline"
+                        android:layout_width="match_parent"
+                        android:layout_height="70dp"
+                        android:layout_marginTop="1dp"
+                        android:text="Put an eye catching tagline here"
+                        android:textColor="@drawable/regular_text"
+                        android:textSize="15sp"
+                        android:textStyle="bold"/>
+                </RelativeLayout>
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/user_profile_photo_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@id/user_profile_content_top_left">
+                <ImageView
+                    android:id="@+id/profile_photo"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/matisse"/>
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/user_profile_content_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="218dp"
+            android:layout_below="@id/user_profile_content_top">
+            <RelativeLayout
+                android:id="@+id/my_profile_info_scroll_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <LinearLayout
+                    android:id="@+id/my_profile_info_scroll_wrapper"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+                    <ScrollView
+                        android:id="@+id/my_profile_info_scroll"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:id="@+id/my_profile_info"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="@string/my_profile_facts"
+                            android:textSize="20dp"
+                            android:textColor="@drawable/regular_text" />
+
+                    </ScrollView>
+                </LinearLayout>
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/my_profile_to_edit_profile_button_container"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true">
+                <ImageButton
+                    android:id="@+id/my_profile_to_edit_profile_button"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/edit"
+
+                    />
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/user_profile_content_to_postings"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginBottom="0dp"
+            android:layout_alignParentBottom="true">
+            <Button
+                android:id="@+id/my_profile_to_my_postings_button"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/button_pressed"
+                android:textColor="@drawable/button_text"
+                android:textAlignment="center"
+                android:text="@string/my_postings"
+                />
+        </RelativeLayout>
+
 
 
     </RelativeLayout>
     <RelativeLayout
         android:id="@+id/my_profile_bottom_bar"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="70dp"
         android:layout_alignParentBottom="true"
+        android:layout_marginTop="0dp"
         android:background="@drawable/menu_bar">
         <Button
             android:id="@+id/my_profile_to_main_menu_button"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_centerHorizontal="true"
             android:background="@drawable/button_pressed"
             android:textColor="@drawable/button_text"
             android:textAlignment="center"

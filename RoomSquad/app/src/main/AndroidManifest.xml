@@ -28,7 +28,8 @@
         <activity android:name=".MyPostingsActivity" />
         <activity android:name=".MyPreferencesActivity" />
         <activity android:name=".MyMatchesActivity" />
-        <activity android:name=".MySuggestionsActivity"></activity>
+        <activity android:name=".MySuggestionsActivity" />
+        <activity android:name=".EditProfileActivity"></activity>
     </application>
 
 </manifest>

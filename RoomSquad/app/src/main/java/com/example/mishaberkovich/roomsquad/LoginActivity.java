@@ -362,7 +362,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         @Override
         protected Boolean doInBackground(Void... params) {
             // TODO: attempt authentication against a network service.
-
             roomsquad_firebase.authWithPassword(mEmail, mPassword, new Firebase.AuthResultHandler() {
                 @Override
                 public void onAuthenticated(AuthData authData) {
@@ -448,6 +447,15 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 @Override
                 public void onSuccess(Map<String, Object> result) {
                     System.out.println("Successfully created user account with uid: " + result.get("uid"));
+                    //create a user account with profile, preferences, postings, suggestions, and matches
+                    Map<String,Object> user_account = new HashMap<String,Object>();
+                    user_account.put("profile", 0);
+                    user_account.put("preferences", 0);
+                    user_account.put("postings", 0);
+                    user_account.put("suggestions", 0);
+                    user_account.put("matches", 0);
+                    roomsquad_firebase.child("users").child(result.get("uid").toString()).setValue(mEmail);
+                    roomsquad_firebase.child("users").child(result.get("uid").toString()).updateChildren(user_account);
                     Gravity gravity = new Gravity();
                     Toast created_user_toast = Toast.makeText(mContext, "Created user " + mEmail + ", now please try to login!", Toast.LENGTH_SHORT);
                     created_user_toast.setGravity(gravity.TOP | Gravity.CENTER, 0, 0);
@@ -458,7 +466,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 public void onError(FirebaseError firebaseError) {
                     // there was an error
                     Gravity gravity = new Gravity();
-                    Toast created_user_toast = Toast.makeText(mContext, "User " + mEmail + "cannot be created, might exist already, try again!", Toast.LENGTH_SHORT);
+                    Toast created_user_toast = Toast.makeText(mContext, "User " + mEmail + " cannot be created, might exist already, try again!", Toast.LENGTH_SHORT);
                     created_user_toast.setGravity(gravity.TOP | Gravity.CENTER, 0, 0);
                     created_user_toast.show();
                 }
@@ -473,7 +481,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             showProgress(false);
             if (success){
 
-            } else {
 
 
             }
