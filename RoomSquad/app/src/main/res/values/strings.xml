@@ -37,5 +37,10 @@
     <string name="title_activity_postings">PostingsActivity</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
-    <string name="my_profile_facts">Age:\nGender:\nSmoking:\nPets:\nSocialness:\nNoisiness:\nDrinking:\nWatching TV:\nTime Spent at Home:\nHygiene:\nFriends Over at Place:\nTimeliness to Pay Bills:\nTime Significant Other will spend over:\nEarly Riser vs Late Riser:\nCooking Skills:\nOne or two bathrooms:\nMusic:\n</string>
+    <string name="my_profile_facts">Age:\n\nGender:\n\nSmoking:\n\nPets:\n\nSocialness:\n\nNoisiness:\n\nDrinking:\n\nWatching TV:\n\nTime Spent at Home:\n\nHygiene:\n\nFriends Over at Place:\n\nTimeliness to Pay Bills:\n\nTime Significant Other will spend over:\n\nEarly Riser vs Late Riser:\n\nCooking Skills:\n\nOne or two bathrooms:\n\nMusic:\n\n</string>
+    <string name="edit_profile_bottom">(click to go back to My Profile)</string>
+    <string name="save_changes">Save Changes</string>
+    <string name="edit_profile_top">Edit My Profile</string>
+    <string name="change_photo">(click on photo to change it)</string>
+    <string name="set_birthdate">Set Birthdate</string>
 </resources>

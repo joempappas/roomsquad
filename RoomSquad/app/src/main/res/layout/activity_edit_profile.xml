@@ -1,12 +1,209 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/edit_profile_activity"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.mishaberkovich.roomsquad.EditProfileActivity">
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/edit_profile_top_bar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:paddingBottom="0dp"
+        android:background="@drawable/menu_bar">
+        <TextView
+            android:id="@+id/edit_profile_top_bar_text"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="15dp"
+            android:layout_centerInParent="true"
+            android:keepScreenOn="true"
+            android:text="@string/edit_profile_top"
+            android:textColor="@drawable/menu_bar_text"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textAlignment="center"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/edit_profile_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edit_profile_top_bar"
+
+        android:paddingBottom="0dp"
+        android:layout_marginBottom="0dp"
+        android:background="@drawable/activity_layout">
+
+        <RelativeLayout
+            android:id="@+id/edit_profile_content_top"
+            android:layout_width="match_parent"
+            android:layout_height="165dp">
+
+            <RelativeLayout
+                android:id="@+id/edit_profile_content_top_left"
+                android:layout_width="175dp"
+                android:layout_height="match_parent">
+                <RelativeLayout
+                    android:id="@+id/edit_profile_basic"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <EditText
+                        android:id="@+id/edit_profile_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="1dp"
+                        android:text="MY NAME"
+                        android:textColor="@drawable/regular_text"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:background="#ffffff"/>
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/edit_profile_details"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/edit_profile_basic">
+                    <EditText
+                        android:id="@+id/edit_profile_tagline"
+                        android:layout_width="match_parent"
+                        android:layout_height="70dp"
+                        android:layout_marginTop="1dp"
+                        android:background="#ffffff"
+                        android:text="Put an eye catching tagline here"
+                        android:textColor="@drawable/regular_text"
+                        android:textSize="15sp"
+                        android:textStyle="bold"/>
+                </RelativeLayout>
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/edit_profile_photo_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@id/edit_profile_content_top_left">
+                <ImageButton
+                    android:id="@+id/edit_profile_photo"
+                    android:layout_width="match_parent"
+                    android:layout_height="140dp"
+                    android:src="@drawable/matisse"
+                    android:scaleType="fitCenter"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/edit_profile_photo"
+                    android:text="@string/change_photo"
+                    android:textColor="@drawable/regular_text"
+                    android:textSize="10sp"
+                    android:textStyle="bold"
+                    />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/edit_profile_content_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="222dp"
+            android:layout_below="@id/edit_profile_content_top">
+            <RelativeLayout
+                android:id="@+id/edit_profile_info_scroll_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <LinearLayout
+                    android:id="@+id/edit_profile_info_scroll_wrapper"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+                    <ScrollView
+                        android:id="@+id/edit_profile_info_scroll"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <RelativeLayout
+                            android:id="@+id/edit_profile_scroll_child"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+                            <RelativeLayout
+                                android:id="@+id/edit_profile_scroll_left"
+                                android:layout_width="150dp"
+                                android:layout_height="match_parent">
+                                <TextView
+                                    android:id="@+id/edit_profile_info"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:text="@string/my_profile_facts"
+                                    android:textSize="20dp"
+                                    android:textColor="@drawable/regular_text" />
+
+                            </RelativeLayout>
+                            <RelativeLayout
+                                android:id="@+id/edit_profile_scroll_right"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_toRightOf="@id/edit_profile_scroll_left">
+                                <Button
+                                    android:id="@+id/age_picker_button"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="40dp"
+                                    android:text="@string/set_birthdate"
+                                    android:textSize="10dp"
+                                    android:background="@drawable/button_pressed"
+                                    android:textColor="@drawable/button_text"
+                                    android:textAlignment="center"
+                                    android:onClick="showDatePickerDialog"/>
+                                <TextView
+                                    android:id="@+id/text_display_age"
+                                    android:layout_width="100dp"
+                                    android:layout_height="40dp"
+                                    android:textColor="@drawable/regular_text"
+                                    android:textSize="20dp"/>
+
+                            </RelativeLayout>
+
+
+
+                        </RelativeLayout>
+
+                    </ScrollView>
+                </LinearLayout>
+            </RelativeLayout>
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/edit_profile_save_changes"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginBottom="0dp"
+            android:layout_below="@id/edit_profile_content_bottom">
+            <Button
+                android:id="@+id/edit_profile_save_changes_button"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/button_pressed"
+                android:textColor="@drawable/button_text"
+                android:textAlignment="center"
+                android:text="@string/save_changes"
+                />
+        </RelativeLayout>
+
+
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/edit_profile_bottom_bar"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_below="@id/edit_profile_content"
+        android:layout_marginTop="0dp"
+        android:background="@drawable/menu_bar">
+        <Button
+            android:id="@+id/my_profile_to_main_menu_button"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/button_pressed"
+            android:textColor="@drawable/button_text"
+            android:textAlignment="center"
+            android:text="@string/edit_profile_bottom"
+            />
+    </RelativeLayout>
 
 </RelativeLayout>

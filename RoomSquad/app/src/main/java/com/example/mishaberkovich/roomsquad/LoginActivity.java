@@ -367,12 +367,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 public void onAuthenticated(AuthData authData) {
                     System.out.println("Login successful: User ID: " + authData.getUid() + ", Provider: " + authData.getProvider());
                     System.out.println("Eureka!");
-                    Map<String, String> map = new HashMap<String, String>();
-                    map.put("provider", authData.getProvider());
-                    if(authData.getProviderData().containsKey("displayName")) {
-                        map.put("displayName", authData.getProviderData().get("displayName").toString());
-                    }
-                    roomsquad_firebase.child("users").child(authData.getUid()).setValue(map);
                     Intent gotoMainMenu = new Intent(LoginActivity.this, MainMenuActivity.class);
                     gotoMainMenu.putExtra("KEY", roomsquad_firebase.getAuth().getUid());
                     LoginActivity.this.startActivity(gotoMainMenu);
