@@ -52,9 +52,9 @@ public class EditProfileActivity extends AppCompatActivity {
 
     Firebase roomsquad_firebase = new Firebase("https://roomsquad.firebaseio.com/");
     Firebase current_user = roomsquad_firebase.child("users").child(roomsquad_firebase.getAuth().getUid().toString());
-    final static ArrayList<String> profile_information = new ArrayList<String>();
-
     static boolean changes_saved = true;
+    final static ArrayList<String> profile_information = new ArrayList<String>();
+    final static int PROF_INFO_SIZE = 4;//will change
     final static int name_loc = 0;//used to track the location of the profile name
     final static int tagline_loc = 1;//used to track location of profile tagline
     final static int birthdate_loc = 2;//used to track the location of the birthdate in the profile_information arraylist
@@ -69,7 +69,7 @@ public class EditProfileActivity extends AppCompatActivity {
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         setupUI(findViewById(R.id.edit_profile_activity));
         //initializes arraylist
-        for (int i=0; i<10; i++){
+        for (int i=0; i<PROF_INFO_SIZE; i++){
             profile_information.add("");
         }
 
@@ -87,30 +87,30 @@ public class EditProfileActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 if (dataSnapshot.getChildren()!=null) {//if profile is initialized
-                    String birthdate = (String) dataSnapshot.child("birthdate").getValue();
                     String name = (String) dataSnapshot.child("name").getValue();
                     String tagline = (String) dataSnapshot.child("tagline").getValue();
+                    String birthdate = (String) dataSnapshot.child("birthdate").getValue();
                     String gender = (String) dataSnapshot.child("gender").getValue();
 
                     profile_information.remove(name_loc);
                     profile_information.add(name_loc, name);
-                    if (name != null && name.length() > 0){
-                        profile_name_edit_text.setText(name);
+                    if (profile_information.get(name_loc)!=null){
+                        profile_name_edit_text.setText(profile_information.get(name_loc));
                     }
                     profile_information.remove(tagline_loc);
                     profile_information.add(tagline_loc, tagline);
-                    if (tagline != null && tagline.length() > 0){
-                        profile_tagline_edit_text.setText(tagline);
+                    if (profile_information.get(tagline_loc)!=null){
+                        profile_tagline_edit_text.setText(profile_information.get(tagline_loc));
                     }
                     profile_information.remove(birthdate_loc);
                     profile_information.add(birthdate_loc, birthdate);
                     //get age to display
-                    if (birthdate != null && birthdate.length() > 0){
+                    if (profile_information.get(birthdate_loc)!=null){
                         displayAge(EditProfileActivity.this);
                     }
                     profile_information.remove(gender_loc);
                     profile_information.add(gender_loc, gender);
-                    if (gender!=null && gender.length() > 0) {
+                    if (profile_information.get(gender_loc)!=null){
                         displayGender();
                     }
                 }
@@ -141,6 +141,7 @@ public class EditProfileActivity extends AppCompatActivity {
                 if (last_change!=null && new_change != null && !last_change.equals(new_change)) {
                     changes_saved = false;
                 }
+
                 profile_information.add(name_loc, new_change);
 
             }
@@ -161,6 +162,7 @@ public class EditProfileActivity extends AppCompatActivity {
                 String last_change = profile_information.remove(tagline_loc);
                 String new_change = profile_tagline_edit_text.getText().toString();
                 if (last_change!=null && new_change != null && !last_change.equals(new_change)) {
+                    System.out.println("tagline");
                     changes_saved = false;
                 }
                 profile_information.add(tagline_loc, new_change);
@@ -188,14 +190,14 @@ public class EditProfileActivity extends AppCompatActivity {
                 if (checkedId == R.id.male_radio_button) {
                     String prev_gender = profile_information.remove(gender_loc);
                     profile_information.add(gender_loc, "Male");
-                    if (prev_gender.equals("Female")){
+                    if (prev_gender == null || prev_gender.equals("Female")){
                         changes_saved = false;
                     }
                 }
                 if (checkedId == R.id.female_radio_button) {
                     String prev_gender = profile_information.remove(gender_loc);
                     profile_information.add(gender_loc, "Female");
-                    if (prev_gender.equals("Male")){
+                    if (prev_gender == null || prev_gender.equals("Male")){
                         changes_saved = false;
                     }
                 }
@@ -322,10 +324,10 @@ public class EditProfileActivity extends AppCompatActivity {
 
         String birthdate = profile_information.get(birthdate_loc);
         //gets the day month and year into integers
-        int day = Integer.parseInt(profile_information.get(birthdate_loc).substring(0, profile_information.get(birthdate_loc).indexOf('/')));
-        int month = Integer.parseInt(profile_information.get(birthdate_loc).substring(profile_information.get(birthdate_loc).indexOf('/') + 1, profile_information.get(birthdate_loc).lastIndexOf('/')))-1;
+        int day = Integer.parseInt(birthdate.substring(0, birthdate.indexOf('/')));
+        int month = Integer.parseInt(birthdate.substring(birthdate.indexOf('/') + 1, birthdate.lastIndexOf('/')))-1;
         //due to way it is encoded with january starting at 0, need to subtract 1
-        int year = Integer.parseInt(profile_information.get(birthdate_loc).substring(profile_information.get(birthdate_loc).lastIndexOf('/') + 1, profile_information.get(birthdate_loc).length()));
+        int year = Integer.parseInt(birthdate.substring(birthdate.lastIndexOf('/') + 1, birthdate.length()));
 
         //adds the age based on the birthdate to show up on the UI
         final Calendar c = Calendar.getInstance();
@@ -413,26 +415,17 @@ public class EditProfileActivity extends AppCompatActivity {
 
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
-
-
             // Use the current date as the default date in the picker
-
             final Calendar c = Calendar.getInstance();
             int year = c.get(Calendar.YEAR);
             int month = c.get(Calendar.MONTH);
             int day = c.get(Calendar.DAY_OF_MONTH);
-
-
-
             if (profile_information.get(birthdate_loc) != null && profile_information.get(birthdate_loc).length()>1){
                 day = Integer.parseInt(profile_information.get(birthdate_loc).substring(0, profile_information.get(birthdate_loc).indexOf('/')));
                 month = Integer.parseInt(profile_information.get(birthdate_loc).substring(profile_information.get(birthdate_loc).indexOf('/') + 1, profile_information.get(birthdate_loc).lastIndexOf('/')))-1;
                 //due to way it is encoded with january starting at 0, need to subtract 1
                 year = Integer.parseInt(profile_information.get(birthdate_loc).substring(profile_information.get(birthdate_loc).lastIndexOf('/') + 1, profile_information.get(birthdate_loc).length()));
             }
-
-
-
 
             // Create a new instance of DatePickerDialog and return it
             return new DatePickerDialog(getActivity(), this, year, month, day);
@@ -443,7 +436,7 @@ public class EditProfileActivity extends AppCompatActivity {
             month = month+1;//due to way it is encoded with january starting at 0
             String birthdate = day + "/" + month +"/" + year;
             String last_date = profile_information.remove(birthdate_loc);
-            if (!last_date.equals(birthdate)){//makes changes unsaved if the birthdates were unequal
+            if (last_date==null || !last_date.equals(birthdate)){//makes changes unsaved if the birthdates were unequal
                 changes_saved=false;
             }
             profile_information.add(birthdate_loc, birthdate);
