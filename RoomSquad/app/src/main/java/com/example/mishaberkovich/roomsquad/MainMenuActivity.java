@@ -70,14 +70,51 @@ public class MainMenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                System.out.println("Logout: User ID: " + roomsquad_firebase.getAuth().getUid() + ", Provider: " + roomsquad_firebase.getAuth().getProvider());
                 roomsquad_firebase.unauth();
                 Intent logout = new Intent(MainMenuActivity.this, LoginActivity.class);
                 MainMenuActivity.this.startActivity(logout);
             }
         });
 
+    }
 
+    @Override
+    protected void onStart(){
+        System.out.println("onStart method for MainMenuActivity being called");
+        super.onStart();
+    }
+
+    @Override
+    protected void onRestart(){
+        System.out.println("onRestart method for MainMenuActivity being called");
+        super.onRestart();
+    }
+
+    @Override
+    protected void onPause(){
+        System.out.println("onPause method for MainMenuActivity being called");
+        super.onPause();
+    }
+
+    @Override
+    protected void onResume(){
+        System.out.println("onResume method for MainMenuActivity being called");
+        super.onResume();
+    }
+
+    @Override
+    protected void onStop()
+    {
+        System.out.println("onStop method for MainMenuActivity being called");
+        super.onStop();
 
     }
+
+    @Override
+    protected void onDestroy(){
+        System.out.println("onDestroy method for MainMenuActivity being called");
+        super.onDestroy();
+    }
 }
+
+

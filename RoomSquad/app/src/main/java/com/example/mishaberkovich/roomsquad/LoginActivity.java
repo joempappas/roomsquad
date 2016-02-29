@@ -62,7 +62,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      */
     private static final int REQUEST_READ_CONTACTS = 0;
 
-    private User myUser;
     private UserLoginTask mAuthTask = null;
     private UserRegisterTask mRegTask = null;
 
@@ -73,13 +72,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private View mLoginFormView;
 
 
-
-
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        System.out.println("onCreate method for LoginActivity being called");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         Firebase.setAndroidContext(this);
@@ -106,7 +101,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println("Login button pressed gosh!");
                 attemptLoginOrRegister(0);
             }
         });
@@ -115,14 +109,53 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         mEmailRegisterButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println("Register button pressed gosh!");
                 attemptLoginOrRegister(1);
             }
         });
 
+
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
     }
+
+    @Override
+    protected void onStart(){
+        System.out.println("onStart method for LoginActivity being called");
+        super.onStart();
+    }
+
+    @Override
+    protected void onRestart(){
+        System.out.println("onRestart method for LoginActivity being called");
+        super.onRestart();
+    }
+
+    @Override
+    protected void onPause(){
+        System.out.println("onPause method for LoginActivity being called");
+        super.onPause();
+    }
+
+    @Override
+    protected void onResume(){
+        System.out.println("onResume method for LoginActivity being called");
+        super.onResume();
+    }
+
+    @Override
+    protected void onStop()
+    {
+        System.out.println("onStop method for LoginActivity being called");
+        super.onStop();
+
+    }
+
+    @Override
+    protected void onDestroy(){
+        System.out.println("onDestroy method for LoginActivity being called");
+        super.onDestroy();
+    }
+
 
     private void populateAutoComplete() {
         if (!mayRequestContacts()) {
@@ -176,7 +209,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      */
     private void attemptLoginOrRegister(int l_r) {
         if (mAuthTask != null) {
-            System.out.println("THIS was your problem");
             return;
         }
 
@@ -223,14 +255,12 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             // perform the user login attempt.
             showProgress(true);
             if (l_r == 0){
-                System.out.println("USER WANTS TO LOGIN DUDE!");
                 mAuthTask = new UserLoginTask(email, password, this);
                 mAuthTask.execute((Void) null);
                 mAuthTask = null;//important do not remove
                 mRegTask = null;//important do not remove
             }
             else if (l_r == 1){
-                System.out.println("USER WANTS TO REGISTER DUDE!");
                 mRegTask = new UserRegisterTask(email, password, this);
                 mRegTask.execute((Void) null);
                 mAuthTask = null;//important do not remove
@@ -365,20 +395,17 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             roomsquad_firebase.authWithPassword(mEmail, mPassword, new Firebase.AuthResultHandler() {
                 @Override
                 public void onAuthenticated(AuthData authData) {
-                    System.out.println("Login successful: User ID: " + authData.getUid() + ", Provider: " + authData.getProvider());
-                    System.out.println("Eureka!");
                     Intent gotoMainMenu = new Intent(LoginActivity.this, MainMenuActivity.class);
-                    gotoMainMenu.putExtra("KEY", roomsquad_firebase.getAuth().getUid());
+                    //gotoMainMenu.putExtra("KEY", roomsquad_firebase.getAuth().getUid());
                     LoginActivity.this.startActivity(gotoMainMenu);
                 }
 
                 @Override
                 public void onAuthenticationError(FirebaseError firebaseError) {
                     // there was an error
-                    System.out.println("Login did not work initially. User or password must be not correct.");
                     Gravity gravity = new Gravity();
                     Toast created_user_toast = Toast.makeText(mContext, "User " + mEmail + " cannot be logged in. Try again!", Toast.LENGTH_SHORT);
-                    created_user_toast.setGravity(gravity.TOP | Gravity.CENTER, 0, 0);
+                    created_user_toast.setGravity(gravity.CENTER | gravity.CENTER, 0, 0);
                     created_user_toast.show();
 
                 }
@@ -436,11 +463,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         @Override
         protected Boolean doInBackground(Void... params) {
             // TODO: attempt to make a new user id
-            System.out.println("We're gonna create that account!!!");
             roomsquad_firebase.createUser(mEmail, mPassword, new Firebase.ValueResultHandler<Map<String, Object>>() {
                 @Override
                 public void onSuccess(Map<String, Object> result) {
-                    System.out.println("Successfully created user account with uid: " + result.get("uid"));
                     //create a user account with profile, preferences, postings, suggestions, and matches
                     Map<String,Object> user_account = new HashMap<String,Object>();
                     user_account.put("profile", 0);

@@ -57,6 +57,7 @@
                         android:textSize="20sp"
                         android:textStyle="bold"
                         android:background="#ffffff"/>
+                    <requestFocus />
                 </RelativeLayout>
                 <RelativeLayout
                     android:id="@+id/edit_profile_details"
@@ -66,13 +67,14 @@
                     <EditText
                         android:id="@+id/edit_profile_tagline"
                         android:layout_width="match_parent"
-                        android:layout_height="70dp"
+                        android:layout_height="86dp"
                         android:layout_marginTop="1dp"
                         android:background="#ffffff"
                         android:text="Put an eye catching tagline here"
                         android:textColor="@drawable/regular_text"
                         android:textSize="15sp"
                         android:textStyle="bold"/>
+                    <requestFocus />
                 </RelativeLayout>
 
             </RelativeLayout>
@@ -85,8 +87,9 @@
                     android:id="@+id/edit_profile_photo"
                     android:layout_width="match_parent"
                     android:layout_height="140dp"
+                    android:padding="0dp"
                     android:src="@drawable/matisse"
-                    android:scaleType="fitCenter"/>
+                    android:scaleType="fitXY"/>
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -143,18 +146,33 @@
                                     android:id="@+id/age_picker_button"
                                     android:layout_width="wrap_content"
                                     android:layout_height="40dp"
+                                    android:layout_marginBottom="7dp"
                                     android:text="@string/set_birthdate"
                                     android:textSize="10dp"
                                     android:background="@drawable/button_pressed"
                                     android:textColor="@drawable/button_text"
-                                    android:textAlignment="center"
-                                    android:onClick="showDatePickerDialog"/>
-                                <TextView
-                                    android:id="@+id/text_display_age"
-                                    android:layout_width="100dp"
+                                    android:textAlignment="center"/>
+                                <RadioGroup
+                                    android:id="@+id/gender_radio_buttons"
+                                    android:layout_width="match_parent"
                                     android:layout_height="40dp"
-                                    android:textColor="@drawable/regular_text"
-                                    android:textSize="20dp"/>
+                                    android:layout_below="@id/age_picker_button"
+                                    android:orientation="horizontal">
+                                    <RadioButton android:id="@+id/male_radio_button"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/male"
+                                        android:textSize="20sp"
+                                        android:textColor="@drawable/regular_text"
+                                        android:buttonTint="@drawable/regular_text"/>
+                                    <RadioButton android:id="@+id/female_radio_button"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/female"
+                                        android:textSize="20sp"
+                                        android:textColor="@drawable/regular_text"
+                                        android:buttonTint="@drawable/regular_text"/>
+                                </RadioGroup>
 
                             </RelativeLayout>
 
@@ -196,7 +214,7 @@
         android:layout_marginTop="0dp"
         android:background="@drawable/menu_bar">
         <Button
-            android:id="@+id/my_profile_to_main_menu_button"
+            android:id="@+id/edit_profile_to_my_profile_button"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/button_pressed"

@@ -65,7 +65,7 @@
                     <TextView
                         android:id="@+id/user_profile_tagline"
                         android:layout_width="match_parent"
-                        android:layout_height="70dp"
+                        android:layout_height="86dp"
                         android:layout_marginTop="1dp"
                         android:text="Put an eye catching tagline here"
                         android:textColor="@drawable/regular_text"
@@ -82,7 +82,7 @@
                 <ImageView
                     android:id="@+id/profile_photo"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="140dp"
                     android:src="@drawable/matisse"/>
 
             </RelativeLayout>

@@ -43,4 +43,6 @@
     <string name="edit_profile_top">Edit My Profile</string>
     <string name="change_photo">(click on photo to change it)</string>
     <string name="set_birthdate">Set Birthdate</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
 </resources>
