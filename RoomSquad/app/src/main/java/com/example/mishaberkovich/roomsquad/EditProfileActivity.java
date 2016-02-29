@@ -160,7 +160,7 @@ public class EditProfileActivity extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
                 String last_change = profile_information.remove(tagline_loc);
                 String new_change = profile_tagline_edit_text.getText().toString();
-                if (!last_change.equals(new_change)) {
+                if (last_change!=null && new_change != null && !last_change.equals(new_change)) {
                     changes_saved = false;
                 }
                 profile_information.add(tagline_loc, new_change);
@@ -184,14 +184,20 @@ public class EditProfileActivity extends AppCompatActivity {
 
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                changes_saved = false;
+
                 if (checkedId == R.id.male_radio_button) {
-                    profile_information.remove(gender_loc);
+                    String prev_gender = profile_information.remove(gender_loc);
                     profile_information.add(gender_loc, "Male");
+                    if (prev_gender.equals("Female")){
+                        changes_saved = false;
+                    }
                 }
                 if (checkedId == R.id.female_radio_button) {
-                    profile_information.remove(gender_loc);
+                    String prev_gender = profile_information.remove(gender_loc);
                     profile_information.add(gender_loc, "Female");
+                    if (prev_gender.equals("Male")){
+                        changes_saved = false;
+                    }
                 }
                 displayGender();
             }
@@ -433,10 +439,13 @@ public class EditProfileActivity extends AppCompatActivity {
         }
 
         public void onDateSet(DatePicker view, int year, int month, int day) {
-            changes_saved=false;
+
             month = month+1;//due to way it is encoded with january starting at 0
             String birthdate = day + "/" + month +"/" + year;
-            profile_information.remove(birthdate_loc);
+            String last_date = profile_information.remove(birthdate_loc);
+            if (!last_date.equals(birthdate)){//makes changes unsaved if the birthdates were unequal
+                changes_saved=false;
+            }
             profile_information.add(birthdate_loc, birthdate);
 
             displayAge(getActivity());
