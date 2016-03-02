@@ -45,4 +45,6 @@
     <string name="set_birthdate">Set Birthdate</string>
     <string name="male">Male</string>
     <string name="female">Female</string>
+    <string name="upload_profile_photo_top">Upload Profile Photo</string>
+    <string name="upload_profile_photo_bottom">(click to go back to Edit My Profile)</string>
 </resources>

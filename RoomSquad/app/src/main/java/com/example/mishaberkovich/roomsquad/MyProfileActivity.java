@@ -35,8 +35,9 @@ public class MyProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_profile);
-
         Firebase.setAndroidContext(this);
+
+
 
         //initialize the arraylist
         for (int i=0; i<10; i++){
@@ -56,34 +57,36 @@ public class MyProfileActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
 
 
-                if (dataSnapshot.getChildren()!=null){//if profile is initialized
-                    String birthdate = (String) dataSnapshot.child("birthdate").getValue();
+
+                if (dataSnapshot.getChildren()!=null) {//if profile is initialized
                     String name = (String) dataSnapshot.child("name").getValue();
                     String tagline = (String) dataSnapshot.child("tagline").getValue();
+                    String birthdate = (String) dataSnapshot.child("birthdate").getValue();
                     String gender = (String) dataSnapshot.child("gender").getValue();
 
                     profile_information.remove(name_loc);
                     profile_information.add(name_loc, name);
-                    if (name != null && name.length() > 0){
-                        profile_name_view_text.setText(name);
+                    if (profile_information.get(name_loc)!=null){
+                        profile_name_view_text.setText(profile_information.get(name_loc));
                     }
                     profile_information.remove(tagline_loc);
                     profile_information.add(tagline_loc, tagline);
-                    if (tagline != null && tagline.length() > 0){
-                        profile_tagline_view_text.setText(tagline);
+                    if (profile_information.get(tagline_loc)!=null){
+                        profile_tagline_view_text.setText(profile_information.get(tagline_loc));
                     }
                     profile_information.remove(birthdate_loc);
                     profile_information.add(birthdate_loc, birthdate);
                     //get age to display
-                    if (birthdate != null && birthdate.length() > 0){
+                    if (profile_information.get(birthdate_loc)!=null){
                         displayAge(MyProfileActivity.this);
                     }
                     profile_information.remove(gender_loc);
                     profile_information.add(gender_loc, gender);
-                    if (gender!=null && gender.length() > 0) {
+                    if (profile_information.get(gender_loc)!=null){
                         displayGender();
                     }
                 }
+
 
             }
 

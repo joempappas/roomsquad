@@ -13,8 +13,11 @@ import android.app.AlertDialog;
 import android.support.v4.app.FragmentActivity;
 import android.content.DialogInterface;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Base64;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.inputmethod.InputMethodManager;
@@ -22,12 +25,14 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnTouchListener;
+import android.view.View.OnLayoutChangeListener;
 import android.view.WindowManager;
 import android.view.LayoutInflater;
 import android.widget.Button;
 import android.view.inputmethod.EditorInfo;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
@@ -50,15 +55,18 @@ import java.util.ArrayList;
 public class EditProfileActivity extends AppCompatActivity {
 
 
+
+
     Firebase roomsquad_firebase = new Firebase("https://roomsquad.firebaseio.com/");
     Firebase current_user = roomsquad_firebase.child("users").child(roomsquad_firebase.getAuth().getUid().toString());
     static boolean changes_saved = true;
     final static ArrayList<String> profile_information = new ArrayList<String>();
-    final static int PROF_INFO_SIZE = 4;//will change
+    final static int PROF_INFO_SIZE = 5;//will change
     final static int name_loc = 0;//used to track the location of the profile name
-    final static int tagline_loc = 1;//used to track location of profile tagline
-    final static int birthdate_loc = 2;//used to track the location of the birthdate in the profile_information arraylist
-    final static int gender_loc = 3;//used to track the gender
+    final static int photo_loc = 1;
+    final static int tagline_loc = 2;//used to track location of profile tagline
+    final static int birthdate_loc = 3;//used to track the location of the birthdate in the profile_information arraylist
+    final static int gender_loc = 4;//used to track the gender
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +85,7 @@ public class EditProfileActivity extends AppCompatActivity {
         final EditText profile_name_edit_text = (EditText) findViewById(R.id.edit_profile_name);//edit text for profile name
         final EditText profile_tagline_edit_text = (EditText) findViewById(R.id.edit_profile_tagline);//edit text for tagline
         final RadioGroup genderChoice = (RadioGroup) findViewById(R.id.gender_radio_buttons);//male and female radio button
+        final ImageButton profile_pic = (ImageButton) findViewById(R.id.edit_profile_photo);//profile picture
 
 
         //listens for changes of value to display them to UI
@@ -86,31 +95,39 @@ public class EditProfileActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                if (dataSnapshot.getChildren()!=null) {//if profile is initialized
+                if (dataSnapshot.getChildren() != null) {//if profile is initialized
                     String name = (String) dataSnapshot.child("name").getValue();
                     String tagline = (String) dataSnapshot.child("tagline").getValue();
+                    String photo = (String) dataSnapshot.child("photo").getValue();
                     String birthdate = (String) dataSnapshot.child("birthdate").getValue();
                     String gender = (String) dataSnapshot.child("gender").getValue();
 
                     profile_information.remove(name_loc);
                     profile_information.add(name_loc, name);
-                    if (profile_information.get(name_loc)!=null){
+                    if (profile_information.get(name_loc) != null) {
                         profile_name_edit_text.setText(profile_information.get(name_loc));
                     }
                     profile_information.remove(tagline_loc);
                     profile_information.add(tagline_loc, tagline);
-                    if (profile_information.get(tagline_loc)!=null){
+                    if (profile_information.get(tagline_loc) != null) {
                         profile_tagline_edit_text.setText(profile_information.get(tagline_loc));
+                    }
+                    profile_information.remove(photo_loc);
+                    profile_information.add(photo_loc, photo);
+                    if (profile_information.get(photo_loc) != null) {
+                        byte[] image_in_bytes = Base64.decode(photo, Base64.DEFAULT);
+                        Bitmap pic_bm = BitmapFactory.decodeByteArray(image_in_bytes, 0, image_in_bytes.length);
+                        profile_pic.setImageBitmap(pic_bm);
                     }
                     profile_information.remove(birthdate_loc);
                     profile_information.add(birthdate_loc, birthdate);
                     //get age to display
-                    if (profile_information.get(birthdate_loc)!=null){
+                    if (profile_information.get(birthdate_loc) != null) {
                         displayAge(EditProfileActivity.this);
                     }
                     profile_information.remove(gender_loc);
                     profile_information.add(gender_loc, gender);
-                    if (profile_information.get(gender_loc)!=null){
+                    if (profile_information.get(gender_loc) != null) {
                         displayGender();
                     }
                 }
@@ -138,7 +155,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
                 String last_change = profile_information.remove(name_loc);
                 String new_change = profile_name_edit_text.getText().toString();
-                if (last_change!=null && new_change != null && !last_change.equals(new_change)) {
+                if (last_change != null && new_change != null && !last_change.equals(new_change)) {
                     changes_saved = false;
                 }
 
@@ -147,7 +164,8 @@ public class EditProfileActivity extends AppCompatActivity {
             }
         });
 
-        //get text from edittext with profile name
+
+        //get text from edittext with profile tagline
         profile_tagline_edit_text.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -161,13 +179,26 @@ public class EditProfileActivity extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
                 String last_change = profile_information.remove(tagline_loc);
                 String new_change = profile_tagline_edit_text.getText().toString();
-                if (last_change!=null && new_change != null && !last_change.equals(new_change)) {
+                if (last_change != null && new_change != null && !last_change.equals(new_change)) {
                     System.out.println("tagline");
                     changes_saved = false;
                 }
                 profile_information.add(tagline_loc, new_change);
             }
         });
+
+        //go to upload profile picture by clicking on it
+        profile_pic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent go_to_upload_profile_pic = new Intent(EditProfileActivity.this, UploadProfilePhotoActivity.class);
+                EditProfileActivity.this.startActivity(go_to_upload_profile_pic);
+            }
+
+        });
+
+
+
 
 
         Button ShowDatePickerButton = (Button) findViewById(R.id.age_picker_button);
