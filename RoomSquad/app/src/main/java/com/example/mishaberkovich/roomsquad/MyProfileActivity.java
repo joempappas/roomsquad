@@ -4,12 +4,16 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.ImageView;
 import android.widget.ImageButton;
 
 import com.firebase.client.DataSnapshot;
@@ -26,10 +30,13 @@ public class MyProfileActivity extends AppCompatActivity {
     Firebase roomsquad_firebase = new Firebase("https://roomsquad.firebaseio.com/");
     Firebase current_user = roomsquad_firebase.child("users").child(roomsquad_firebase.getAuth().getUid().toString());
     final static ArrayList<String> profile_information = new ArrayList<String>();
+    final static int PROF_INFO_SIZE = 5;//will change
     final static int name_loc = 0;//used to track the location of the profile name
-    final static int tagline_loc = 1;//used to track location of profile tagline
-    final static int birthdate_loc = 2;//used to track the location of the birthdate in the profile_information arraylist
-    final static int gender_loc = 3;//used to track the gender
+    final static int photo_loc = 1;
+    final static int tagline_loc = 2;//used to track location of profile tagline
+    final static int birthdate_loc = 3;//used to track the location of the birthdate in the profile_information arraylist
+    final static int gender_loc = 4;//used to track the gender
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,13 +47,13 @@ public class MyProfileActivity extends AppCompatActivity {
 
 
         //initialize the arraylist
-        for (int i=0; i<10; i++){
+        for (int i=0; i<PROF_INFO_SIZE; i++){
             profile_information.add("");
         }
 
         final TextView profile_name_view_text = (TextView) findViewById(R.id.user_profile_name);//edit text for profile name
         final TextView profile_tagline_view_text = (TextView) findViewById(R.id.user_profile_tagline);//edit text for tagline
-
+        final ImageView profile_pic = (ImageView) findViewById(R.id.profile_photo);//profile picture
 
 
         //listens for changes of value to display them to UI
@@ -61,6 +68,7 @@ public class MyProfileActivity extends AppCompatActivity {
                 if (dataSnapshot.getChildren()!=null) {//if profile is initialized
                     String name = (String) dataSnapshot.child("name").getValue();
                     String tagline = (String) dataSnapshot.child("tagline").getValue();
+                    String photo = (String) dataSnapshot.child("photo").getValue();
                     String birthdate = (String) dataSnapshot.child("birthdate").getValue();
                     String gender = (String) dataSnapshot.child("gender").getValue();
 
@@ -74,7 +82,13 @@ public class MyProfileActivity extends AppCompatActivity {
                     if (profile_information.get(tagline_loc)!=null){
                         profile_tagline_view_text.setText(profile_information.get(tagline_loc));
                     }
-                    profile_information.remove(birthdate_loc);
+                    profile_information.remove(photo_loc);
+                    profile_information.add(photo_loc, photo);
+                    if (profile_information.get(photo_loc) != null) {
+                        byte[] image_in_bytes = Base64.decode(photo, Base64.DEFAULT);
+                        Bitmap pic_bm = BitmapFactory.decodeByteArray(image_in_bytes, 0, image_in_bytes.length);
+                        profile_pic.setImageBitmap(pic_bm);
+                    }
                     profile_information.add(birthdate_loc, birthdate);
                     //get age to display
                     if (profile_information.get(birthdate_loc)!=null){

@@ -180,7 +180,6 @@ public class EditProfileActivity extends AppCompatActivity {
                 String last_change = profile_information.remove(tagline_loc);
                 String new_change = profile_tagline_edit_text.getText().toString();
                 if (last_change != null && new_change != null && !last_change.equals(new_change)) {
-                    System.out.println("tagline");
                     changes_saved = false;
                 }
                 profile_information.add(tagline_loc, new_change);
