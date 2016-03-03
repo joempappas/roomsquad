@@ -10,14 +10,15 @@ import com.firebase.client.Firebase;
 
 public class MainMenuActivity extends AppCompatActivity {
 
+
+
     Firebase roomsquad_firebase = new Firebase("https://roomsquad.firebaseio.com/");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Firebase.setAndroidContext(this);
         setContentView(R.layout.activity_main_menu);
-
+        Firebase.setAndroidContext(this);
 
 
         Button MyProfile = (Button) findViewById(R.id.menu_to_profile_button);
