@@ -155,7 +155,7 @@
                                 <RadioGroup
                                     android:id="@+id/gender_radio_buttons"
                                     android:layout_width="match_parent"
-                                    android:layout_height="40dp"
+                                    android:layout_height="45dp"
                                     android:layout_below="@id/age_picker_button"
                                     android:orientation="horizontal">
                                     <RadioButton android:id="@+id/male_radio_button"
@@ -169,6 +169,118 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:text="@string/female"
+                                        android:textSize="20sp"
+                                        android:textColor="@drawable/regular_text"
+                                        android:buttonTint="@drawable/regular_text"/>
+                                </RadioGroup>
+                                <RadioGroup
+                                    android:id="@+id/smoking_radio_buttons"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="45dp"
+                                    android:layout_below="@id/gender_radio_buttons"
+                                    android:orientation="horizontal">
+                                    <RadioButton android:id="@+id/smoking_yes_button"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/yes"
+                                        android:textSize="20sp"
+                                        android:textColor="@drawable/regular_text"
+                                        android:buttonTint="@drawable/regular_text"/>
+                                    <RadioButton android:id="@+id/smoking_no_button"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/no"
+                                        android:textSize="20sp"
+                                        android:textColor="@drawable/regular_text"
+                                        android:buttonTint="@drawable/regular_text"/>
+                                </RadioGroup>
+                                <RadioGroup
+                                    android:id="@+id/okay_with_pets_buttons"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="45dp"
+                                    android:layout_below="@id/smoking_radio_buttons"
+                                    android:orientation="horizontal">
+                                    <RadioButton android:id="@+id/pets_yes_button"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/yes"
+                                        android:textSize="20sp"
+                                        android:textColor="@drawable/regular_text"
+                                        android:buttonTint="@drawable/regular_text"/>
+                                    <RadioButton android:id="@+id/pets_no_button"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/no"
+                                        android:textSize="20sp"
+                                        android:textColor="@drawable/regular_text"
+                                        android:buttonTint="@drawable/regular_text"/>
+                                </RadioGroup>
+                                <RadioGroup
+                                    android:id="@+id/nights_going_out_radio_buttons"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="85dp"
+                                    android:layout_below="@id/okay_with_pets_buttons"
+                                    android:orientation="horizontal">
+                                    <RadioButton android:id="@+id/one_two_nights_button"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/one_two_nights"
+                                        android:textSize="20sp"
+                                        android:textColor="@drawable/regular_text"
+                                        android:buttonTint="@drawable/regular_text"/>
+                                    <RadioButton android:id="@+id/three_four_nights"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/three_four_nights"
+                                        android:textSize="20sp"
+                                        android:textColor="@drawable/regular_text"
+                                        android:buttonTint="@drawable/regular_text"/>
+                                    <RadioButton android:id="@+id/five_seven_nights"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/five_seven_nights"
+                                        android:textSize="20sp"
+                                        android:textColor="@drawable/regular_text"
+                                        android:buttonTint="@drawable/regular_text"/>
+                                </RadioGroup>
+                                <RadioGroup
+                                    android:id="@+id/full_time_job_buttons"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="45dp"
+                                    android:layout_below="@id/nights_going_out_radio_buttons"
+                                    android:orientation="horizontal">
+                                    <RadioButton android:id="@+id/full_time_job_yes_button"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/yes"
+                                        android:textSize="20sp"
+                                        android:textColor="@drawable/regular_text"
+                                        android:buttonTint="@drawable/regular_text"/>
+                                    <RadioButton android:id="@+id/full_time_job_no_button"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/no"
+                                        android:textSize="20sp"
+                                        android:textColor="@drawable/regular_text"
+                                        android:buttonTint="@drawable/regular_text"/>
+                                </RadioGroup>
+                                <RadioGroup
+                                    android:id="@+id/early_late_riser_buttons"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="45dp"
+                                    android:layout_below="@id/full_time_job_buttons"
+                                    android:orientation="horizontal">
+                                    <RadioButton android:id="@+id/early_riser_button"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/early_riser"
+                                        android:textSize="20sp"
+                                        android:textColor="@drawable/regular_text"
+                                        android:buttonTint="@drawable/regular_text"/>
+                                    <RadioButton android:id="@+id/late_riser_button"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/late_riser"
                                         android:textSize="20sp"
                                         android:textColor="@drawable/regular_text"
                                         android:buttonTint="@drawable/regular_text"/>

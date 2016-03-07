@@ -37,7 +37,7 @@
     <string name="title_activity_postings">PostingsActivity</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
-    <string name="my_profile_facts">Age:\n\nGender:\n\nSmoking:\n\nPets:\n\nSocialness:\n\nNoisiness:\n\nDrinking:\n\nWatching TV:\n\nTime Spent at Home:\n\nHygiene:\n\nFriends Over at Place:\n\nTimeliness to Pay Bills:\n\nTime Significant Other will spend over:\n\nEarly Riser vs Late Riser:\n\nCooking Skills:\n\nOne or two bathrooms:\n\nMusic:\n\nImportance of a Quiet place:/n/n </string>
+    <string name="my_profile_facts">Age:\n\nGender:\n\nSmoking:\n\nOkay with Pets?:\n\nNumber of nights going out:\n\nFull Time Job?:\n\nEarly Riser vs Late Riser:\n\n </string>
     <string name="edit_profile_bottom">(click to go back to My Profile)</string>
     <string name="save_changes">Save Changes</string>
     <string name="edit_profile_top">Edit My Profile</string>
@@ -64,4 +64,9 @@
     <string name="posting_date_edited">Last Edited: </string>
     <string name="my_photo_top">Photo Fullscreen</string>
     <string name="my_photo_bottom">(click to go back to My Posting)</string>
+    <string name = "one_two_nights">1-2</string>
+    <string name = "three_four_nights">3-4</string>
+    <string name = "five_seven_nights">5-7</string>
+    <string name="early_riser">Early Riser</string>
+    <string name="late_riser">Late Riser</string>
 </resources>

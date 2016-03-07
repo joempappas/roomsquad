@@ -61,12 +61,17 @@ public class EditProfileActivity extends AppCompatActivity {
     Firebase current_user = roomsquad_firebase.child("users").child(roomsquad_firebase.getAuth().getUid().toString());
     static boolean changes_saved = true;
     final static ArrayList<String> profile_information = new ArrayList<String>();
-    final static int PROF_INFO_SIZE = 5;//will change
+    final static int PROF_INFO_SIZE = 10;//will change
     final static int name_loc = 0;//used to track the location of the profile name
     final static int photo_loc = 1;
     final static int tagline_loc = 2;//used to track location of profile tagline
     final static int birthdate_loc = 3;//used to track the location of the birthdate in the profile_information arraylist
     final static int gender_loc = 4;//used to track the gender
+    final static int smoking_loc = 5; //used to track the index of the smoking preference
+    final static int pets_loc = 6; //used to track the index of the pets preference
+    final static int nights_out_loc = 7; //used to track the index of the number of nights out preference
+    final static int job_loc = 8; //used to track the index of the full time job yes or no question
+    final static int wake_time_loc = 9; //used to track the index of the wake up in the morning preference
 
     ValueEventListener editProfileValueEventListener;
 
@@ -88,6 +93,11 @@ public class EditProfileActivity extends AppCompatActivity {
         final EditText profile_name_edit_text = (EditText) findViewById(R.id.edit_profile_name);//edit text for profile name
         final EditText profile_tagline_edit_text = (EditText) findViewById(R.id.edit_profile_tagline);//edit text for tagline
         final RadioGroup genderChoice = (RadioGroup) findViewById(R.id.gender_radio_buttons);//male and female radio button
+        final RadioGroup smokingChoice = (RadioGroup) findViewById(R.id.smoking_radio_buttons);
+        final RadioGroup petsChoice = (RadioGroup) findViewById(R.id.okay_with_pets_buttons);
+        final RadioGroup nightsOutChoice = (RadioGroup) findViewById(R.id.nights_going_out_radio_buttons);
+        final RadioGroup jobChoice = (RadioGroup) findViewById(R.id.full_time_job_buttons);
+        final RadioGroup wakeTimeChoice = (RadioGroup) findViewById(R.id.early_late_riser_buttons);
         final ImageButton profile_pic = (ImageButton) findViewById(R.id.edit_profile_photo);//profile picture
         profile_name_edit_text.setVisibility(View.INVISIBLE);
         profile_tagline_edit_text.setVisibility(View.INVISIBLE);
@@ -105,6 +115,11 @@ public class EditProfileActivity extends AppCompatActivity {
                     String photo = (String) dataSnapshot.child("photo").getValue();
                     String birthdate = (String) dataSnapshot.child("birthdate").getValue();
                     String gender = (String) dataSnapshot.child("gender").getValue();
+                    String smoking = (String) dataSnapshot.child("smoking").getValue();
+                    String pets = (String) dataSnapshot.child("pets").getValue();
+                    String nights_out = (String) dataSnapshot.child("nights_out").getValue();
+                    String job = (String) dataSnapshot.child("job").getValue();
+                    String wake_time = (String) dataSnapshot.child("wake_time").getValue();
 
                     profile_information.remove(name_loc);
                     profile_information.add(name_loc, name);
@@ -137,6 +152,37 @@ public class EditProfileActivity extends AppCompatActivity {
                     if (profile_information.get(gender_loc) != null) {
                         displayGender();
                     }
+
+                    profile_information.remove(smoking_loc);
+                    profile_information.add(smoking_loc, smoking);
+                    if (profile_information.get(smoking_loc) != null) {
+                        displaySmoking();
+                    }
+
+                    profile_information.remove(pets_loc);
+                    profile_information.add(pets_loc, pets);
+                    if (profile_information.get(pets_loc) != null) {
+                        displayPets();
+                    }
+
+                    profile_information.remove(nights_out_loc);
+                    profile_information.add(nights_out_loc, nights_out);
+                    if (profile_information.get(nights_out_loc) != null) {
+                        displayNightsOut();
+                    }
+
+                    profile_information.remove(job_loc);
+                    profile_information.add(job_loc, job);
+                    if (profile_information.get(job_loc) != null) {
+                        displayJob();
+                    }
+
+                    profile_information.remove(wake_time_loc);
+                    profile_information.add(wake_time_loc, wake_time);
+                    if (profile_information.get(wake_time_loc) != null) {
+                        displayWakeTime();
+                    }
+
                 }
 
             }
@@ -230,18 +276,140 @@ public class EditProfileActivity extends AppCompatActivity {
                 if (checkedId == R.id.male_radio_button) {
                     String prev_gender = profile_information.remove(gender_loc);
                     profile_information.add(gender_loc, "Male");
-                    if (prev_gender == null || prev_gender.equals("Female")){
+                    if (prev_gender == null || prev_gender.equals("Female")) {
                         changes_saved = false;
                     }
                 }
                 if (checkedId == R.id.female_radio_button) {
                     String prev_gender = profile_information.remove(gender_loc);
                     profile_information.add(gender_loc, "Female");
-                    if (prev_gender == null || prev_gender.equals("Male")){
+                    if (prev_gender == null || prev_gender.equals("Male")) {
                         changes_saved = false;
                     }
                 }
                 displayGender();
+            }
+        });
+
+        smokingChoice.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+
+                if (checkedId == R.id.smoking_yes_button) {
+                    String prev_choice = profile_information.remove(smoking_loc);
+                    profile_information.add(smoking_loc, "Yes");
+                    if (prev_choice == null || prev_choice.equals("No")){
+                        changes_saved = false;
+                    }
+                }
+                if (checkedId == R.id.smoking_no_button) {
+                    String prev_choice = profile_information.remove(smoking_loc);
+                    profile_information.add(smoking_loc, "No");
+                    if (prev_choice == null || prev_choice.equals("Yes")){
+                        changes_saved = false;
+                    }
+                }
+                displaySmoking();
+            }
+        });
+
+        petsChoice.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+
+                if (checkedId == R.id.pets_yes_button) {
+                    String prev_choice = profile_information.remove(pets_loc);
+                    profile_information.add(pets_loc, "Yes");
+                    if (prev_choice == null || prev_choice.equals("No")){
+                        changes_saved = false;
+                    }
+                }
+                if (checkedId == R.id.pets_no_button) {
+                    String prev_choice = profile_information.remove(pets_loc);
+                    profile_information.add(pets_loc, "No");
+                    if (prev_choice == null || prev_choice.equals("Yes")){
+                        changes_saved = false;
+                    }
+                }
+                displayPets();
+            }
+        });
+
+        nightsOutChoice.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+
+                if (checkedId == R.id.one_two_nights_button) {
+                    String prev_choice = profile_information.remove(nights_out_loc);
+                    profile_information.add(nights_out_loc, "1-2");
+                    if (prev_choice == null || prev_choice.equals("3-4") || prev_choice.equals("5-7")){
+                        changes_saved = false;
+                    }
+                }
+                if (checkedId == R.id.three_four_nights) {
+                    String prev_choice = profile_information.remove(nights_out_loc);
+                    profile_information.add(nights_out_loc, "3-4");
+                    if (prev_choice == null || prev_choice.equals("1-2") || prev_choice.equals("5-7")){
+                        changes_saved = false;
+                    }
+                }
+                if (checkedId == R.id.five_seven_nights) {
+                    String prev_choice = profile_information.remove(nights_out_loc);
+                    profile_information.add(nights_out_loc, "5-7");
+                    if (prev_choice == null || prev_choice.equals("1-2") || prev_choice.equals("3-4")){
+                        changes_saved = false;
+                    }
+                }
+                displayNightsOut();
+            }
+        });
+
+        jobChoice.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+
+                if (checkedId == R.id.full_time_job_yes_button) {
+                    String prev_choice = profile_information.remove(job_loc);
+                    profile_information.add(job_loc, "Yes");
+                    if (prev_choice == null || prev_choice.equals("No")){
+                        changes_saved = false;
+                    }
+                }
+                if (checkedId == R.id.full_time_job_no_button) {
+                    String prev_choice = profile_information.remove(job_loc);
+                    profile_information.add(job_loc, "No");
+                    if (prev_choice == null || prev_choice.equals("Yes")){
+                        changes_saved = false;
+                    }
+                }
+                displayJob();
+            }
+        });
+
+        wakeTimeChoice.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+
+                if (checkedId == R.id.early_riser_button) {
+                    String prev_choice = profile_information.remove(wake_time_loc);
+                    profile_information.add(wake_time_loc, "Early Riser");
+                    if (prev_choice == null || prev_choice.equals("Late Riser")){
+                        changes_saved = false;
+                    }
+                }
+                if (checkedId == R.id.late_riser_button) {
+                    String prev_choice = profile_information.remove(wake_time_loc);
+                    profile_information.add(wake_time_loc, "Late Riser");
+                    if (prev_choice == null || prev_choice.equals("Early Riser")){
+                        changes_saved = false;
+                    }
+                }
+                displayWakeTime();
             }
         });
 
@@ -346,6 +514,11 @@ public class EditProfileActivity extends AppCompatActivity {
         profile_details.put("tagline", profile_information.get(tagline_loc));
         profile_details.put("birthdate", profile_information.get(birthdate_loc));
         profile_details.put("gender", profile_information.get(gender_loc));
+        profile_details.put("smoking", profile_information.get(smoking_loc));
+        profile_details.put("pets", profile_information.get(pets_loc));
+        profile_details.put("nights_out", profile_information.get(nights_out_loc));
+        profile_details.put("job", profile_information.get(job_loc));
+        profile_details.put("wake_time", profile_information.get(wake_time_loc));
 
         Firebase user_profile = current_user.child("profile");
         user_profile.updateChildren(profile_details);
@@ -416,7 +589,107 @@ public class EditProfileActivity extends AppCompatActivity {
         }
     }
 
+    public void displaySmoking(){
+        TextView profile_info = (TextView) findViewById(R.id.edit_profile_info);
+        String profile_info_text="";
+        for (int i=0; i < profile_info.getText().length(); i++){
+            profile_info_text = profile_info_text + profile_info.getText().charAt(i);
+        }
+        int profile_info_smoking = profile_info_text.indexOf("Smoking:") + 8;
+        int profile_info_pets = profile_info_text.indexOf("Okay with Pets?:");
+        profile_info_text = profile_info_text.substring(0,profile_info_smoking) +" "+ profile_information.get(smoking_loc) +"\n\n"+ profile_info_text.substring(profile_info_pets, profile_info_text.length());
+        profile_info.setText(profile_info_text);
+        //set radio button to be checked to current gender
+        RadioGroup smokingChoice = (RadioGroup) findViewById(R.id.smoking_radio_buttons);
+        if (profile_information.get(smoking_loc).equals("Yes")){
+            smokingChoice.check(R.id.smoking_yes_button);
+        } else if (profile_information.get(smoking_loc).equals("No")){
+            smokingChoice.check(R.id.smoking_no_button);
+        } else {
+        }
+    }
 
+    public void displayPets(){
+        TextView profile_info = (TextView) findViewById(R.id.edit_profile_info);
+        String profile_info_text="";
+        for (int i=0; i < profile_info.getText().length(); i++){
+            profile_info_text = profile_info_text + profile_info.getText().charAt(i);
+        }
+        int profile_info_pets = profile_info_text.indexOf("Okay with Pets?:") + 16;
+        int profile_info_nights_out = profile_info_text.indexOf("Number of nights going out:");
+        profile_info_text = profile_info_text.substring(0,profile_info_pets) +" "+ profile_information.get(pets_loc) +"\n\n"+ profile_info_text.substring(profile_info_nights_out, profile_info_text.length());
+        profile_info.setText(profile_info_text);
+        //set radio button to be checked to current gender
+        RadioGroup petsChoice = (RadioGroup) findViewById(R.id.okay_with_pets_buttons);
+        if (profile_information.get(pets_loc).equals("Yes")){
+            petsChoice.check(R.id.pets_yes_button);
+        } else if (profile_information.get(pets_loc).equals("No")){
+            petsChoice.check(R.id.pets_no_button);
+        } else {
+        }
+    }
+
+    public void displayNightsOut() {
+        TextView profile_info = (TextView) findViewById(R.id.edit_profile_info);
+        String profile_info_text = "";
+        for (int i = 0; i < profile_info.getText().length(); i++) {
+            profile_info_text = profile_info_text + profile_info.getText().charAt(i);
+        }
+        int profile_info_nights_out = profile_info_text.indexOf("Number of nights going out:") + 27;
+        int profile_info_job = profile_info_text.indexOf("Full Time Job?:");
+        profile_info_text = profile_info_text.substring(0, profile_info_nights_out) + " " + profile_information.get(nights_out_loc) + "\n\n" + profile_info_text.substring(profile_info_job, profile_info_text.length());
+        profile_info.setText(profile_info_text);
+        //set radio button to be checked to current gender
+        RadioGroup nightsOutChoice = (RadioGroup) findViewById(R.id.nights_going_out_radio_buttons);
+        if (profile_information.get(nights_out_loc).equals("1-2")) {
+            nightsOutChoice.check(R.id.one_two_nights_button);
+        } else if (profile_information.get(nights_out_loc).equals("3-4")) {
+            nightsOutChoice.check(R.id.three_four_nights);
+        }else if (profile_information.get(nights_out_loc).equals("5-7")){
+            nightsOutChoice.check(R.id.five_seven_nights);
+        }else {
+        }
+    }
+
+    public void displayJob(){
+        TextView profile_info = (TextView) findViewById(R.id.edit_profile_info);
+        String profile_info_text="";
+        for (int i=0; i < profile_info.getText().length(); i++){
+            profile_info_text = profile_info_text + profile_info.getText().charAt(i);
+        }
+        int profile_info_job = profile_info_text.indexOf("Full Time Job?:") + 14;
+        int profile_info_riser = profile_info_text.indexOf("Early Riser vs Late Riser:");
+        profile_info_text = profile_info_text.substring(0,profile_info_job) +" "+ profile_information.get(job_loc) +"\n\n"+ profile_info_text.substring(profile_info_riser, profile_info_text.length());
+        profile_info.setText(profile_info_text);
+        //set radio button to be checked to current gender
+        RadioGroup jobChoice = (RadioGroup) findViewById(R.id.full_time_job_buttons);
+        if (profile_information.get(job_loc).equals("Yes")){
+            jobChoice.check(R.id.full_time_job_yes_button);
+        } else if (profile_information.get(job_loc).equals("No")){
+            jobChoice.check(R.id.full_time_job_no_button);
+        } else {
+        }
+    }
+
+    public void displayWakeTime(){
+        TextView profile_info = (TextView) findViewById(R.id.edit_profile_info);
+        String profile_info_text="";
+        for (int i=0; i < profile_info.getText().length(); i++){
+            profile_info_text = profile_info_text + profile_info.getText().charAt(i);
+        }
+        int profile_info_riser = profile_info_text.indexOf("Early Riser vs Late Riser:") + 26;
+        int profile_info_end = profile_info_text.length();
+        profile_info_text = profile_info_text.substring(0,profile_info_riser) +" "+ profile_information.get(wake_time_loc) +"\n\n"+ profile_info_text.substring(profile_info_end, profile_info_text.length());
+        profile_info.setText(profile_info_text);
+        //set radio button to be checked to current gender
+        RadioGroup riserChoice = (RadioGroup) findViewById(R.id.early_late_riser_buttons);
+        if (profile_information.get(wake_time_loc).equals("Early Riser")){
+            riserChoice.check(R.id.early_riser_button);
+        } else if (profile_information.get(wake_time_loc).equals("Late Riser")){
+            riserChoice.check(R.id.late_riser_button);
+        } else {
+        }
+    }
 
 
     //this method hides the soft keyboard from always covering the screen
