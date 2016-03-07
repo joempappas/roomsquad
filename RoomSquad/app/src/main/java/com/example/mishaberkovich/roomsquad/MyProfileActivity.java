@@ -37,6 +37,8 @@ public class MyProfileActivity extends AppCompatActivity {
     final static int birthdate_loc = 3;//used to track the location of the birthdate in the profile_information arraylist
     final static int gender_loc = 4;//used to track the gender
 
+    ValueEventListener myProfileValueEventListener;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,10 +56,11 @@ public class MyProfileActivity extends AppCompatActivity {
         final TextView profile_name_view_text = (TextView) findViewById(R.id.user_profile_name);//edit text for profile name
         final TextView profile_tagline_view_text = (TextView) findViewById(R.id.user_profile_tagline);//edit text for tagline
         final ImageView profile_pic = (ImageView) findViewById(R.id.profile_photo);//profile picture
+        profile_name_view_text.setVisibility(View.INVISIBLE);
+        profile_tagline_view_text.setVisibility(View.INVISIBLE);
+        profile_pic.setVisibility(View.INVISIBLE);//don't show the default photo right away
 
-
-        //listens for changes of value to display them to UI
-        current_user.child("profile").addValueEventListener(new ValueEventListener() {
+        myProfileValueEventListener = new ValueEventListener() {
 
 
             @Override
@@ -77,11 +80,13 @@ public class MyProfileActivity extends AppCompatActivity {
                     if (profile_information.get(name_loc)!=null){
                         profile_name_view_text.setText(profile_information.get(name_loc));
                     }
+                    profile_name_view_text.setVisibility(View.VISIBLE);
                     profile_information.remove(tagline_loc);
                     profile_information.add(tagline_loc, tagline);
                     if (profile_information.get(tagline_loc)!=null){
                         profile_tagline_view_text.setText(profile_information.get(tagline_loc));
                     }
+                    profile_tagline_view_text.setVisibility(View.VISIBLE);
                     profile_information.remove(photo_loc);
                     profile_information.add(photo_loc, photo);
                     if (profile_information.get(photo_loc) != null) {
@@ -89,6 +94,7 @@ public class MyProfileActivity extends AppCompatActivity {
                         Bitmap pic_bm = BitmapFactory.decodeByteArray(image_in_bytes, 0, image_in_bytes.length);
                         profile_pic.setImageBitmap(pic_bm);
                     }
+                    profile_pic.setVisibility(View.VISIBLE);
                     profile_information.add(birthdate_loc, birthdate);
                     //get age to display
                     if (profile_information.get(birthdate_loc)!=null){
@@ -107,7 +113,10 @@ public class MyProfileActivity extends AppCompatActivity {
             @Override
             public void onCancelled(FirebaseError firebaseError) {
             }
-        });
+        };
+
+        //listens for changes of value to display them to UI
+        current_user.child("profile").addValueEventListener(myProfileValueEventListener);
 
 
         Button GoToMyPostings = (Button) findViewById(R.id.my_profile_to_my_postings_button);
@@ -163,10 +172,12 @@ public class MyProfileActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onStop()
-    {
-        System.out.println("onStop method for MyProfileActivity being called");
+    public void onStop(){
         super.onStop();
+        for(int i=0; i <PROF_INFO_SIZE; i++){
+            profile_information.remove(0);
+        }
+        current_user.child("profile").removeEventListener(myProfileValueEventListener);
 
     }
 

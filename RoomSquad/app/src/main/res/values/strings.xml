@@ -49,4 +49,19 @@
     <string name="upload_profile_photo_bottom">(click to go back to Edit My Profile)</string>
     <string name="photo_gallery">Photo Gallery</string>
     <string name="save_photo">Save Photo</string>
+    <string name="my_postings_top">My Postings</string>
+    <string name="my_postings_bottom">(click to go back to Main Menu)</string>
+    <string name="new_posting">Add New Posting</string>
+    <string name="edit_my_posting_top">New Posting</string>
+    <string name="edit_my_posting_bottom">(click to save and view posting)</string>
+    <string name="set_location">Set Location on Map</string>
+    <string name="roommate_posting">Roommate Posting</string>
+    <string name="sublet_posting">Sublet Posting</string>
+    <string name="tenant_posting">Tenant Posting</string>
+    <string name="Location_Default">No location chosen yet</string>
+    <string name="my_posting_top">My Posting</string>
+    <string name="my_posting_bottom">(click to go back to My Postings)</string>
+    <string name="posting_date_edited">Last Edited: </string>
+    <string name="my_photo_top">Photo Fullscreen</string>
+    <string name="my_photo_bottom">(click to go back to My Posting)</string>
 </resources>

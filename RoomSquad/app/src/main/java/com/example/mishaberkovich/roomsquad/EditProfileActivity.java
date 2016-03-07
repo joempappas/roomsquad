@@ -68,11 +68,14 @@ public class EditProfileActivity extends AppCompatActivity {
     final static int birthdate_loc = 3;//used to track the location of the birthdate in the profile_information arraylist
     final static int gender_loc = 4;//used to track the gender
 
+    ValueEventListener editProfileValueEventListener;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
         Firebase.setAndroidContext(this);
+        changes_saved=true;
         //to hide keyboard from covering half of screen, initially, then when clicking outside of edit text
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         setupUI(findViewById(R.id.edit_profile_activity));
@@ -86,10 +89,11 @@ public class EditProfileActivity extends AppCompatActivity {
         final EditText profile_tagline_edit_text = (EditText) findViewById(R.id.edit_profile_tagline);//edit text for tagline
         final RadioGroup genderChoice = (RadioGroup) findViewById(R.id.gender_radio_buttons);//male and female radio button
         final ImageButton profile_pic = (ImageButton) findViewById(R.id.edit_profile_photo);//profile picture
+        profile_name_edit_text.setVisibility(View.INVISIBLE);
+        profile_tagline_edit_text.setVisibility(View.INVISIBLE);
+        profile_pic.setVisibility(View.INVISIBLE);//don't show the default photo right away
 
-
-        //listens for changes of value to display them to UI
-        current_user.child("profile").addValueEventListener(new ValueEventListener() {
+        editProfileValueEventListener = new ValueEventListener() {
 
 
             @Override
@@ -107,11 +111,13 @@ public class EditProfileActivity extends AppCompatActivity {
                     if (profile_information.get(name_loc) != null) {
                         profile_name_edit_text.setText(profile_information.get(name_loc));
                     }
+                    profile_name_edit_text.setVisibility(View.VISIBLE);
                     profile_information.remove(tagline_loc);
                     profile_information.add(tagline_loc, tagline);
                     if (profile_information.get(tagline_loc) != null) {
                         profile_tagline_edit_text.setText(profile_information.get(tagline_loc));
                     }
+                    profile_tagline_edit_text.setVisibility(View.VISIBLE);
                     profile_information.remove(photo_loc);
                     profile_information.add(photo_loc, photo);
                     if (profile_information.get(photo_loc) != null) {
@@ -119,6 +125,7 @@ public class EditProfileActivity extends AppCompatActivity {
                         Bitmap pic_bm = BitmapFactory.decodeByteArray(image_in_bytes, 0, image_in_bytes.length);
                         profile_pic.setImageBitmap(pic_bm);
                     }
+                    profile_pic.setVisibility(View.VISIBLE);
                     profile_information.remove(birthdate_loc);
                     profile_information.add(birthdate_loc, birthdate);
                     //get age to display
@@ -137,7 +144,10 @@ public class EditProfileActivity extends AppCompatActivity {
             @Override
             public void onCancelled(FirebaseError firebaseError) {
             }
-        });
+        };
+
+        //listens for changes of value to display them to UI
+        current_user.child("profile").addValueEventListener(editProfileValueEventListener);
 
 
         //get text from edittext with profile name
@@ -313,11 +323,12 @@ public class EditProfileActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onStop()
-    {
-        System.out.println("onStop method for EditProfileActivity being called");
+    public void onStop(){
         super.onStop();
-
+        for(int i=0; i <PROF_INFO_SIZE; i++){
+            profile_information.remove(0);
+        }
+        current_user.child("profile").removeEventListener(editProfileValueEventListener);
     }
 
     @Override

@@ -396,7 +396,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 @Override
                 public void onAuthenticated(AuthData authData) {
                     Intent gotoMainMenu = new Intent(LoginActivity.this, MainMenuActivity.class);
-                    //gotoMainMenu.putExtra("KEY", roomsquad_firebase.getAuth().getUid());
                     LoginActivity.this.startActivity(gotoMainMenu);
                 }
 
