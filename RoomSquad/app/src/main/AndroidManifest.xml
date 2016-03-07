@@ -34,7 +34,12 @@
         <activity android:name=".MyMatchesActivity" />
         <activity android:name=".MySuggestionsActivity" />
         <activity android:name=".EditProfileActivity" />
-        <activity android:name=".UploadProfilePhotoActivity"></activity>
+        <activity android:name=".UploadProfilePhotoActivity" />
+        <activity
+            android:name=".EditMyPostingActivity"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+        <activity android:name=".MyPostingActivity" />
+        <activity android:name=".MyPhotoFullscreenActivity"></activity>
     </application>
 
 </manifest>
