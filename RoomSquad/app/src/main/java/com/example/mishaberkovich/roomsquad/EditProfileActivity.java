@@ -577,6 +577,8 @@ public class EditProfileActivity extends AppCompatActivity {
         }
         int profile_info_gender = profile_info_text.indexOf("Gender:") + 7;
         int profile_info_smoking = profile_info_text.indexOf("Smoking:");
+        System.out.println(profile_info_gender);
+        System.out.println(profile_info_smoking);
         profile_info_text = profile_info_text.substring(0,profile_info_gender) +" "+ profile_information.get(gender_loc) +"\n\n"+ profile_info_text.substring(profile_info_smoking, profile_info_text.length());
         profile_info.setText(profile_info_text);
         //set radio button to be checked to current gender
@@ -657,7 +659,7 @@ public class EditProfileActivity extends AppCompatActivity {
         for (int i=0; i < profile_info.getText().length(); i++){
             profile_info_text = profile_info_text + profile_info.getText().charAt(i);
         }
-        int profile_info_job = profile_info_text.indexOf("Full Time Job?:") + 14;
+        int profile_info_job = profile_info_text.indexOf("Full Time Job?:") + 15;
         int profile_info_riser = profile_info_text.indexOf("Early Riser vs Late Riser:");
         profile_info_text = profile_info_text.substring(0,profile_info_job) +" "+ profile_information.get(job_loc) +"\n\n"+ profile_info_text.substring(profile_info_riser, profile_info_text.length());
         profile_info.setText(profile_info_text);
@@ -679,7 +681,7 @@ public class EditProfileActivity extends AppCompatActivity {
         }
         int profile_info_riser = profile_info_text.indexOf("Early Riser vs Late Riser:") + 26;
         int profile_info_end = profile_info_text.length();
-        profile_info_text = profile_info_text.substring(0,profile_info_riser) +" "+ profile_information.get(wake_time_loc) +"\n\n"+ profile_info_text.substring(profile_info_end, profile_info_text.length());
+        profile_info_text = profile_info_text.substring(0,profile_info_riser) +" "+ profile_information.get(wake_time_loc);
         profile_info.setText(profile_info_text);
         //set radio button to be checked to current gender
         RadioGroup riserChoice = (RadioGroup) findViewById(R.id.early_late_riser_buttons);
