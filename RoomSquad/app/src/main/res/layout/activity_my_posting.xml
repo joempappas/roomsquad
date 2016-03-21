@@ -166,24 +166,14 @@
                     android:layout_marginTop="20dp">
                     <TextView
                         android:id="@+id/posting_location_text"
-                        android:layout_width="220dp"
+                        android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginTop="10dp"
                         android:textAlignment="center"
-                        android:textSize="15sp"
+                        android:textSize="11sp"
                         android:textStyle="bold"
                         android:textColor="@drawable/regular_text"
                         android:text="@string/Location_Default"/>
-                    <Button
-                        android:id="@+id/set_location_button"
-                        android:layout_width="wrap_content"
-                        android:layout_height="40dp"
-                        android:layout_toRightOf="@id/posting_location_text"
-                        android:text="@string/set_location"
-                        android:textSize="10dp"
-                        android:background="@drawable/button_pressed"
-                        android:textColor="@drawable/button_text"
-                        android:textAlignment="center"/>
 
                 </RelativeLayout>
                 <RelativeLayout

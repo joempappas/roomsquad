@@ -271,7 +271,7 @@
                         android:layout_height="match_parent"
                         android:layout_marginTop="10dp"
                         android:textAlignment="center"
-                        android:textSize="15sp"
+                        android:textSize="11sp"
                         android:textStyle="bold"
                         android:textColor="@drawable/regular_text"
                         android:text="@string/Location_Default"/>

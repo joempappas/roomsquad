@@ -276,7 +276,7 @@ public class EditMyPostingActivity extends AppCompatActivity {
                 boolean radio_btn_is_checked = false;
 
                 if (checkedId == R.id.roommate_radio_button) {
-                    radio_btn_is_checked=true;
+                    radio_btn_is_checked = true;
                     String prev_type = posting_information.remove(type_loc);
                     posting_information.add(type_loc, "Roommate");
                     if (prev_type == null || !prev_type.equals("Roommate")) {
@@ -284,23 +284,23 @@ public class EditMyPostingActivity extends AppCompatActivity {
                     }
                 }
                 if (checkedId == R.id.sublet_radio_button) {
-                    radio_btn_is_checked=true;
+                    radio_btn_is_checked = true;
                     String prev_type = posting_information.remove(type_loc);
                     posting_information.add(type_loc, "Sublet");
-                    if (prev_type == null || !prev_type.equals("Sublet")){
-                        changes_made=true;
+                    if (prev_type == null || !prev_type.equals("Sublet")) {
+                        changes_made = true;
                     }
 
                 }
                 if (checkedId == R.id.tenant_radio_button) {
-                    radio_btn_is_checked=true;
+                    radio_btn_is_checked = true;
                     String prev_type = posting_information.remove(type_loc);
                     posting_information.add(type_loc, "Tenant");
                     if (prev_type == null || !prev_type.equals("Tenant")) {
                         changes_made = true;
                     }
                 }
-                if (radio_btn_is_checked){
+                if (radio_btn_is_checked) {
                     RoommateOptions.setVisibility(View.VISIBLE);
                     final EditText minprice_input = (EditText) findViewById(R.id.from_dollar_input);
                     final EditText maxprice_input = (EditText) findViewById(R.id.to_dollar_input);
@@ -348,40 +348,40 @@ public class EditMyPostingActivity extends AppCompatActivity {
                     single_check.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            if(single_check.isChecked()){
+                            if (single_check.isChecked()) {
                                 posting_information.remove(single_loc);
-                                posting_information.add(single_loc,"true");
-                            }else{
+                                posting_information.add(single_loc, "true");
+                            } else {
                                 posting_information.remove(single_loc);
-                                posting_information.add(single_loc,"false");
+                                posting_information.add(single_loc, "false");
                             }
-                            changes_made =true;
+                            changes_made = true;
                         }
                     });
                     double_check.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            if(double_check.isChecked()){
+                            if (double_check.isChecked()) {
                                 posting_information.remove(double_loc);
-                                posting_information.add(double_loc,"true");
-                            }else{
+                                posting_information.add(double_loc, "true");
+                            } else {
                                 posting_information.remove(double_loc);
-                                posting_information.add(double_loc,"false");
+                                posting_information.add(double_loc, "false");
                             }
-                            changes_made =true;
+                            changes_made = true;
                         }
                     });
                     more_check.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            if(more_check.isChecked()){
+                            if (more_check.isChecked()) {
                                 posting_information.remove(more_loc);
-                                posting_information.add(more_loc,"true");
-                            }else{
+                                posting_information.add(more_loc, "true");
+                            } else {
                                 posting_information.remove(more_loc);
-                                posting_information.add(more_loc,"false");
+                                posting_information.add(more_loc, "false");
                             }
-                            changes_made =true;
+                            changes_made = true;
                         }
                     });
                 }
@@ -438,6 +438,17 @@ public class EditMyPostingActivity extends AppCompatActivity {
                 String posting_name = posting_description_edit_text.getText().toString();
                 posting_information.add(description_loc, posting_name);
                 changes_made = true;
+            }
+        });
+
+        //go to map
+        Button GoToMap = (Button) findViewById(R.id.set_location_button);
+        GoToMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent go_to_map = new Intent(EditMyPostingActivity.this, MyPostingMapActivity.class);
+                go_to_map.putExtra("posting_id", posting_information.get(uid_loc));
+                EditMyPostingActivity.this.startActivity(go_to_map);
             }
         });
 

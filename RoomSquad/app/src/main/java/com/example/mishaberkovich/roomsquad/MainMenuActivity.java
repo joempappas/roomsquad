@@ -44,6 +44,7 @@ public class MainMenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent gotoMyPostings = new Intent(MainMenuActivity.this, MyPostingsActivity.class);
+                gotoMyPostings.putExtra("user_id", roomsquad_firebase.getAuth().getUid().toString());
                 MainMenuActivity.this.startActivity(gotoMyPostings);
             }
         });

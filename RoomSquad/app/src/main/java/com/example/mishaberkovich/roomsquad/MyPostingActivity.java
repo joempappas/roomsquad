@@ -230,6 +230,8 @@ public class MyPostingActivity extends AppCompatActivity {
         });
 
 
+
+
         //Go back to my postings
         Button GoToMyPostingsButton = (Button) findViewById(R.id.my_posting_to_my_postings_button);
         GoToMyPostingsButton.setOnClickListener(new View.OnClickListener() {

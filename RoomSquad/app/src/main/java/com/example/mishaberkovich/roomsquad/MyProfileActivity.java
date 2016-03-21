@@ -53,6 +53,8 @@ public class MyProfileActivity extends AppCompatActivity {
             profile_information.add("");
         }
 
+
+
         final TextView profile_name_view_text = (TextView) findViewById(R.id.user_profile_name);//edit text for profile name
         final TextView profile_tagline_view_text = (TextView) findViewById(R.id.user_profile_tagline);//edit text for tagline
         final ImageView profile_pic = (ImageView) findViewById(R.id.profile_photo);//profile picture
@@ -95,6 +97,7 @@ public class MyProfileActivity extends AppCompatActivity {
                         profile_pic.setImageBitmap(pic_bm);
                     }
                     profile_pic.setVisibility(View.VISIBLE);
+                    profile_information.remove(birthdate_loc);
                     profile_information.add(birthdate_loc, birthdate);
                     //get age to display
                     if (profile_information.get(birthdate_loc)!=null){
@@ -124,6 +127,7 @@ public class MyProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent go_to_my_postings = new Intent(MyProfileActivity.this, MyPostingsActivity.class);
+                go_to_my_postings.putExtra("user_id", roomsquad_firebase.getAuth().getUid().toString());
                 MyProfileActivity.this.startActivity(go_to_my_postings);
             }
         });

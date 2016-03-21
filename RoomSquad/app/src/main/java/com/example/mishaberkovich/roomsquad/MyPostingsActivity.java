@@ -43,6 +43,9 @@ public class MyPostingsActivity extends AppCompatActivity {
 
         System.out.println("Creating My Postings Activity");
 
+        final String user_id = getIntent().getExtras().getString("user_id");
+
+
         //add a new posting button
         ImageButton AddNewPostingButton = (ImageButton) findViewById(R.id.new_posting_button);
         AddNewPostingButton.setOnClickListener(new View.OnClickListener() {
@@ -65,7 +68,7 @@ public class MyPostingsActivity extends AppCompatActivity {
                 //not so efficient cuz looks through all postings and not user postings
                 //in future might have to change this when there are a lot of postings
                 //but user only has link to posting not the data...
-                if (!dataSnapshot.getValue().equals("deleted") && dataSnapshot.child("user").getValue().equals(roomsquad_firebase.getAuth().getUid())) {
+                if (!dataSnapshot.getValue().equals("deleted") && dataSnapshot.child("user").getValue().equals(user_id)) {
                     final String posting_id = dataSnapshot.getKey();
                     String date_name = dataSnapshot.child("date").getValue().toString() + ": " + dataSnapshot.child("name").getValue().toString();
                     MyPostingsArray.add(date_name);
