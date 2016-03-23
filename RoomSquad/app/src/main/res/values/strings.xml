@@ -64,7 +64,6 @@
     <string name="posting_date_edited">Last Edited: </string>
     <string name="my_photo_top">Photo Fullscreen</string>
     <string name="my_photo_bottom">(click to go back to My Posting)</string>
-<<<<<<< HEAD
     <string name="title_activity_my_posting_map">Map</string>
     <string name="my_posting_map_top">Location Map</string>
     <string name="my_posting_map_bottom">(click to go back to posting)</string>
@@ -72,11 +71,9 @@
     <string name="my_preferences_bottom">(click to go back to Main Menu)</string>
     <string name="my_suggestions_top">My Suggestions</string>
     <string name="my_suggestions_bottom">(click to go back to Main Menu)</string>
-=======
     <string name = "one_two_nights">1-2</string>
     <string name = "three_four_nights">3-4</string>
     <string name = "five_seven_nights">5-7</string>
     <string name="early_riser">Early Riser</string>
     <string name="late_riser">Late Riser</string>
->>>>>>> 2ddd0adaa462938b710af7fac5fe601529516efc
 </resources>
