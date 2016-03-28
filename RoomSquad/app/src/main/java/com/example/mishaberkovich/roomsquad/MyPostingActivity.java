@@ -220,14 +220,16 @@ public class MyPostingActivity extends AppCompatActivity {
 
         //edit posting
         ImageButton EditPostingButton = (ImageButton) findViewById(R.id.edit_posting_button);
+
         EditPostingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent go_to_edit_posting = new Intent(MyPostingActivity.this, EditMyPostingActivity.class);
-                go_to_edit_posting.putExtra("posting_id", posting_information.get(uid_loc));
-                MyPostingActivity.this.startActivity(go_to_edit_posting);
+            Intent go_to_edit_posting = new Intent(MyPostingActivity.this, EditMyPostingActivity.class);
+            go_to_edit_posting.putExtra("posting_id", posting_information.get(uid_loc));
+            MyPostingActivity.this.startActivity(go_to_edit_posting);
             }
         });
+
 
 
 
@@ -238,6 +240,7 @@ public class MyPostingActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent go_to_my_postings = new Intent(MyPostingActivity.this, MyPostingsActivity.class);
+                go_to_my_postings.putExtra("user_id", posting_information.get(uid_loc));
                 MyPostingActivity.this.startActivity(go_to_my_postings);
 
             }

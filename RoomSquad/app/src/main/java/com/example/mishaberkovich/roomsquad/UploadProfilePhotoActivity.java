@@ -109,11 +109,17 @@ public class UploadProfilePhotoActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onStop(){
+        super.onStop();
+        photo_string_container.remove(0);
+    }
 
     public void upload_photo_to_firebase(){
         photo_saved = true;
         Map<String,Object> profile_details = new HashMap<String,Object>();
-        String imageFile = photo_string_container.remove(0);
+        System.out.println("photo str container size before removal: " + photo_string_container.size());
+        String imageFile = photo_string_container.get(0);
         profile_details.put("photo", imageFile);
         Firebase user_profile = current_user.child("profile");
         user_profile.updateChildren(profile_details);

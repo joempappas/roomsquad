@@ -446,9 +446,8 @@ public class EditMyPostingActivity extends AppCompatActivity {
         GoToMap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent go_to_map = new Intent(EditMyPostingActivity.this, MyPostingMapActivity.class);
-                go_to_map.putExtra("posting_id", posting_information.get(uid_loc));
-                EditMyPostingActivity.this.startActivity(go_to_map);
+                save_changes(2);
+
             }
         });
 
@@ -722,7 +721,8 @@ public class EditMyPostingActivity extends AppCompatActivity {
                             .setIcon(android.R.drawable.ic_dialog_alert)
                             .show();
 
-                } else {
+                }
+                else {
                     if (changes_made){
                         modify_firebase_posting_details();
                     }
@@ -738,6 +738,11 @@ public class EditMyPostingActivity extends AppCompatActivity {
                                 android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                         photo_gallery_launch.putExtra("posting_id", posting_information.get(uid_loc));
                         startActivityForResult(photo_gallery_launch, 0);
+                    }  else if (intent == 2){
+                        photo_gallery_stop = false;
+                        Intent go_to_map = new Intent(EditMyPostingActivity.this, MyPostingMapActivity.class);
+                        go_to_map.putExtra("posting_id", posting_information.get(uid_loc));
+                        EditMyPostingActivity.this.startActivity(go_to_map);
                     }
 
                 }

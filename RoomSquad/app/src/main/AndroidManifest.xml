@@ -46,7 +46,6 @@
             android:name=".EditMyPostingActivity"
             android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity android:name=".MyPostingActivity" />
-        <activity android:name=".MyPhotoFullscreenActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -55,9 +54,14 @@
              sign the APK for publishing.
              You can define the keys for the debug and release targets in src/debug/ and src/release/. 
         -->
+
+        <meta-data
+            android:name = "com.google.gms.version"
+            android:value="@integer/google_play_services_version" />
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="@string/google_maps_key" />
+            android:value="AIzaSyB3BbFFxcX3KGt3NiPyKhblyHUZvifHHJo" />
 
         <activity
             android:name=".MyPostingMapActivity"
