@@ -58,8 +58,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginTop="20dp"
-                    android:layout_toRightOf="@id/preferences_scroll_left"
-                    >
+                    android:layout_toRightOf="@id/preferences_scroll_left">
                     <EditText
                         android:id="@+id/pref_age_from"
                         android:layout_width="70dp"
@@ -95,7 +94,7 @@
                     <RelativeLayout
                         android:id="@+id/Gender_CheckBoxes"
                         android:layout_width="match_parent"
-                        android:layout_height="30dp"
+                        android:layout_height="40dp"
                         android:layout_marginTop="10dp"
                         android:layout_below="@id/pref_age_from">
                         <CheckBox
@@ -131,6 +130,219 @@
                             android:textColor="@drawable/regular_text"
                             android:text="Female"/>
 
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/Smoking_CheckBoxes"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_below="@id/Gender_CheckBoxes">
+                        <CheckBox
+                            android:id="@+id/smoking_yes_checkbox"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:buttonTint="@drawable/regular_text"/>
+                        <TextView
+                            android:id="@+id/smoking_yes_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_toRightOf="@id/smoking_yes_checkbox"
+                            android:layout_marginTop="7dp"
+                            android:textStyle="bold"
+                            android:textSize="15sp"
+                            android:textColor="@drawable/regular_text"
+                            android:text="Yes"/>
+                        <CheckBox
+                            android:id="@+id/smoking_no_checkbox"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="40dp"
+                            android:layout_toRightOf="@id/smoking_yes_text"
+                            android:buttonTint="@drawable/regular_text"/>
+                        <TextView
+                            android:id="@+id/smoking_no_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_toRightOf="@id/smoking_no_checkbox"
+                            android:layout_marginTop="7dp"
+                            android:textStyle="bold"
+                            android:textSize="15sp"
+                            android:textColor="@drawable/regular_text"
+                            android:text="No"/>
+                        </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/OkayWithPets_CheckBoxes"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_below="@id/Smoking_CheckBoxes">
+                        <CheckBox
+                            android:id="@+id/okayWithPets_yes_checkbox"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:buttonTint="@drawable/regular_text"/>
+                        <TextView
+                            android:id="@+id/okayWithPets_yes_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_toRightOf="@id/okayWithPets_yes_checkbox"
+                            android:layout_marginTop="7dp"
+                            android:textStyle="bold"
+                            android:textSize="15sp"
+                            android:textColor="@drawable/regular_text"
+                            android:text="Yes"/>
+                        <CheckBox
+                            android:id="@+id/okayWithPets_no_checkbox"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="40dp"
+                            android:layout_toRightOf="@id/okayWithPets_yes_text"
+                            android:buttonTint="@drawable/regular_text"/>
+                        <TextView
+                            android:id="@+id/okayWithPets_no_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_toRightOf="@id/okayWithPets_no_checkbox"
+                            android:layout_marginTop="7dp"
+                            android:textStyle="bold"
+                            android:textSize="15sp"
+                            android:textColor="@drawable/regular_text"
+                            android:text="No"/>
+                        </RelativeLayout>
+                    <RelativeLayout
+                        android:id="@+id/numberOfNightsOut_CheckBoxes"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_below="@id/OkayWithPets_CheckBoxes">
+                        <CheckBox
+                            android:id="@+id/numberOfNightsOut_oneTwo_checkbox"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:buttonTint="@drawable/regular_text"/>
+                        <TextView
+                            android:id="@+id/numberOfNightsOut_oneTwo_checkbox_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_toRightOf="@id/numberOfNightsOut_oneTwo_checkbox"
+                            android:layout_marginTop="7dp"
+                            android:textStyle="bold"
+                            android:textSize="15sp"
+                            android:textColor="@drawable/regular_text"
+                            android:text="1-2"/>
+                        <CheckBox
+                            android:id="@+id/numberOfNightsOut_threeFour_checkbox"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_toRightOf="@+id/numberOfNightsOut_oneTwo_checkbox_text"
+                            android:buttonTint="@drawable/regular_text"/>
+                        <TextView
+                            android:id="@+id/numberOfNightsOut_threeFour_checkbox_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_toRightOf="@id/numberOfNightsOut_threeFour_checkbox"
+                            android:layout_marginTop="7dp"
+                            android:textStyle="bold"
+                            android:textSize="15sp"
+                            android:textColor="@drawable/regular_text"
+                            android:text="3-4"/>
+                        <CheckBox
+                            android:id="@+id/numberOfNightsOut_fiveSeven_checkbox"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_toRightOf="@+id/numberOfNightsOut_threeFour_checkbox_text"
+                            android:buttonTint="@drawable/regular_text"/>
+                        <TextView
+                            android:id="@+id/numberOfNightsOut_fiveSeven_checkbox_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_toRightOf="@id/numberOfNightsOut_fiveSeven_checkbox"
+                            android:layout_marginTop="7dp"
+                            android:textStyle="bold"
+                            android:textSize="15sp"
+                            android:textColor="@drawable/regular_text"
+                            android:text="5-7"/>
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:id="@+id/FullTimeJob_CheckBoxes"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_below="@id/numberOfNightsOut_CheckBoxes">
+                        <CheckBox
+                            android:id="@+id/fullTimeJob_yes_checkbox"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:buttonTint="@drawable/regular_text"/>
+                        <TextView
+                            android:id="@+id/fullTimeJob_yes_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_toRightOf="@id/fullTimeJob_yes_checkbox"
+                            android:layout_marginTop="7dp"
+                            android:textStyle="bold"
+                            android:textSize="15sp"
+                            android:textColor="@drawable/regular_text"
+                            android:text="Yes"/>
+                        <CheckBox
+                            android:id="@+id/fullTimeJob_no_checkbox"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="40dp"
+                            android:layout_toRightOf="@id/fullTimeJob_yes_text"
+                            android:buttonTint="@drawable/regular_text"/>
+                        <TextView
+                            android:id="@+id/fullTimeJob_no_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_toRightOf="@id/fullTimeJob_no_checkbox"
+                            android:layout_marginTop="7dp"
+                            android:textStyle="bold"
+                            android:textSize="15sp"
+                            android:textColor="@drawable/regular_text"
+                            android:text="No"/>
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:id="@+id/Riser_CheckBoxes"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_below="@id/FullTimeJob_CheckBoxes">
+                        <CheckBox
+                            android:id="@+id/earlyRiser_checkbox"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:buttonTint="@drawable/regular_text"/>
+                        <TextView
+                            android:id="@+id/earlyRiser_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_toRightOf="@id/earlyRiser_checkbox"
+                            android:layout_marginTop="7dp"
+                            android:textStyle="bold"
+                            android:textSize="15sp"
+                            android:textColor="@drawable/regular_text"
+                            android:text="Early Riser"/>
+                        <CheckBox
+                            android:id="@+id/lateRiser_checkbox"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="40dp"
+                            android:layout_toRightOf="@id/earlyRiser_text"
+                            android:buttonTint="@drawable/regular_text"/>
+                        <TextView
+                            android:id="@+id/lateRiser_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_toRightOf="@id/lateRiser_checkbox"
+                            android:layout_marginTop="7dp"
+                            android:textStyle="bold"
+                            android:textSize="15sp"
+                            android:textColor="@drawable/regular_text"
+                            android:text="Late Riser"/>
                     </RelativeLayout>
 
 
