@@ -11,7 +11,7 @@ import com.firebase.client.Firebase;
 public class MainMenuActivity extends AppCompatActivity {
 
 
-
+    boolean isInitialized;
     Firebase roomsquad_firebase = new Firebase("https://roomsquad.firebaseio.com/");
 
     @Override
@@ -19,6 +19,7 @@ public class MainMenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
         Firebase.setAndroidContext(this);
+        isInitialized = true;
 
 
         Button MyProfile = (Button) findViewById(R.id.menu_to_profile_button);
